@@ -1,0 +1,9 @@
+tags
+
+.*.swp
+*.suo
+*.userprefs
+
+test-results/
+bin/
+obj/
