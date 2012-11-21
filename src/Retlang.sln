@@ -7,12 +7,18 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RetlangTests", "RetlangTest
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Retlang.Android", "Retlang.Android\Retlang.Android.csproj", "{530D2021-96D2-49DE-9E14-73132ADC7984}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Retlang.iOS", "Retlang.iOS\Retlang.iOS.csproj", "{35278940-25C0-4A4C-9E91-19972F3F0EB2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{35278940-25C0-4A4C-9E91-19972F3F0EB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35278940-25C0-4A4C-9E91-19972F3F0EB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35278940-25C0-4A4C-9E91-19972F3F0EB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35278940-25C0-4A4C-9E91-19972F3F0EB2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{530D2021-96D2-49DE-9E14-73132ADC7984}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{530D2021-96D2-49DE-9E14-73132ADC7984}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{530D2021-96D2-49DE-9E14-73132ADC7984}.Release|Any CPU.ActiveCfg = Release|Any CPU

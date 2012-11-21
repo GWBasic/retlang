@@ -8,6 +8,7 @@ namespace Retlang.Fibers
 		public HandlerFiber (Handler handler, IExecutor executor)
 			: base(new HandlerAdapter(handler), executor)
 		{
+
 		}
 	}
 }
