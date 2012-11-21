@@ -114,9 +114,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Retlang\Retlang_2010.csproj">
+    <ProjectReference Include="..\Retlang\Retlang.csproj">
       <Project>{65ABCF4F-88F0-46EF-A6CF-71850019262E}</Project>
-      <Name>Retlang_2010</Name>
+      <Name>Retlang</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
