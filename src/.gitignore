@@ -1,6 +1,2 @@
 .*.swp
 *.userprefs
-
-bin/
-obj/
-test-results
