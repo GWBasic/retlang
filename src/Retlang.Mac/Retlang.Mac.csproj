@@ -67,8 +67,6 @@
     <Folder Include="Retlang.Core\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Retlang.Fibers\MacAdapter.cs" />
-    <Compile Include="Retlang.Fibers\MacFiber.cs" />
     <Compile Include="..\Retlang\Retlang.Fibers\ExecutionState.cs">
       <Link>Retlang.Fibers\ExecutionState.cs</Link>
     </Compile>
@@ -225,5 +223,7 @@
     <Compile Include="..\Retlang\Retlang.Channels\Unsubscriber.cs">
       <Link>Retlang.Channels\Unsubscriber.cs</Link>
     </Compile>
+    <Compile Include="Retlang.Fibers\NSObjectAdapter.cs" />
+    <Compile Include="Retlang.Fibers\NSObjectFiber.cs" />
   </ItemGroup>
 </Project>
