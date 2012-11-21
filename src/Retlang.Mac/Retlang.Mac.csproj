@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B47775AD-2EA9-4D98-A612-A63C15AE65AC}</ProjectGuid>
+    <ProjectTypeGuids>{948B3504-5B70-4649-8FE4-BDE1FB46EC69};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Retlang.Mac</RootNamespace>
+    <MonoMacResourcePrefix>Resources</MonoMacResourcePrefix>
+    <AssemblyName>Retlang.Mac</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>False</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <EnablePackageSigning>False</EnablePackageSigning>
+    <IncludeMonoRuntime>False</IncludeMonoRuntime>
+    <ConsolePause>False</ConsolePause>
+    <EnableCodeSigning>False</EnableCodeSigning>
+    <CreatePackage>False</CreatePackage>
+    <CodeSigningKey>Mac Developer</CodeSigningKey>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>True</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <EnablePackageSigning>False</EnablePackageSigning>
+    <IncludeMonoRuntime>False</IncludeMonoRuntime>
+    <LinkMode>Full</LinkMode>
+    <ConsolePause>False</ConsolePause>
+    <EnableCodeSigning>False</EnableCodeSigning>
+    <CreatePackage>False</CreatePackage>
+    <CodeSigningKey>Mac Developer</CodeSigningKey>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AppStore|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>True</Optimize>
+    <OutputPath>bin\AppStore</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PackageSigningKey>3rd Party Mac Developer Installer</PackageSigningKey>
+    <IncludeMonoRuntime>True</IncludeMonoRuntime>
+    <LinkMode>Full</LinkMode>
+    <EnablePackageSigning>True</EnablePackageSigning>
+    <ConsolePause>False</ConsolePause>
+    <EnableCodeSigning>True</EnableCodeSigning>
+    <CreatePackage>True</CreatePackage>
+    <CodeSigningKey>3rd Party Mac Developer Application</CodeSigningKey>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="MonoMac" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Mono\MonoMac\v0.0\Mono.MonoMac.targets" />
+  <ItemGroup>
+    <Folder Include="Retlang.Channels\" />
+    <Folder Include="Retlang.Core\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Retlang.Fibers\MacAdapter.cs" />
+    <Compile Include="Retlang.Fibers\MacFiber.cs" />
+    <Compile Include="..\Retlang\Retlang.Fibers\ExecutionState.cs">
+      <Link>Retlang.Fibers\ExecutionState.cs</Link>
+    </Compile>
+    <Compile Include="..\Retlang\Retlang.Fibers\GuiFiber.cs">
+      <Link>Retlang.Fibers\GuiFiber.cs</Link>
+    </Compile>
+    <Compile Include="..\Retlang\Retlang.Fibers\IFiber.cs">
+      <Link>Retlang.Fibers\IFiber.cs</Link>
+    </Compile>
+    <Compile Include="..\Retlang\Retlang.Fibers\PoolFiber.cs">
+      <Link>Retlang.Fibers\PoolFiber.cs</Link>
+    </Compile>
+    <Compile Include="..\Retlang\Retlang.Fibers\StubFiber.cs">
+      <Link>Retlang.Fibers\StubFiber.cs</Link>
+    </Compile>
+    <Compile Include="..\Retlang\Retlang.Fibers\StubScheduledAction.cs">
+      <Link>Retlang.Fibers\StubScheduledAction.cs</Link>
+    </Compile>
+    <Compile Include="..\Retlang\Retlang.Fibers\ThreadFiber.cs">
+      <Link>Retlang.Fibers\ThreadFiber.cs</Link>
+    </Compile>
+    <Compile Include="..\Retlang\Retlang.Core\BoundedQueue.cs">
+      <Link>Retlang.Core\BoundedQueue.cs</Link>
+    </Compile>
+    <Compile Include="..\Retlang\Retlang.Core\BusyWaitQueue.cs">
+      <Link>Retlang.Core\BusyWaitQueue.cs</Link>
+    </Compile>
+    <Compile Include="..\Retlang\Retlang.Core\DefaultExecutor.cs">
+      <Link>Retlang.Core\DefaultExecutor.cs</Link>
+    </Compile>
+    <Compile Include="..\Retlang\Retlang.Core\DefaultQueue.cs">
+      <Link>Retlang.Core\DefaultQueue.cs</Link>
+    </Compile>
+    <Compile Include="..\Retlang\Retlang.Core\DefaultThreadPool.cs">
+      <Link>Retlang.Core\DefaultThreadPool.cs</Link>
+    </Compile>
+    <Compile Include="..\Retlang\Retlang.Core\IExecutionContext.cs">
+      <Link>Retlang.Core\IExecutionContext.cs</Link>
+    </Compile>
+    <Compile Include="..\Retlang\Retlang.Core\IExecutor.cs">
+      <Link>Retlang.Core\IExecutor.cs</Link>
+    </Compile>
+    <Compile Include="..\Retlang\Retlang.Core\IPendingEvent.cs">
+      <Link>Retlang.Core\IPendingEvent.cs</Link>
+    </Compile>
+    <Compile Include="..\Retlang\Retlang.Core\IQueue.cs">
+      <Link>Retlang.Core\IQueue.cs</Link>
+    </Compile>
+    <Compile Include="..\Retlang\Retlang.Core\IScheduler.cs">
+      <Link>Retlang.Core\IScheduler.cs</Link>
+    </Compile>
+    <Compile Include="..\Retlang\Retlang.Core\ISchedulerRegistry.cs">
+      <Link>Retlang.Core\ISchedulerRegistry.cs</Link>
+    </Compile>
+    <Compile Include="..\Retlang\Retlang.Core\ISubscriptionRegistry.cs">
+      <Link>Retlang.Core\ISubscriptionRegistry.cs</Link>
+    </Compile>
+    <Compile Include="..\Retlang\Retlang.Core\IThreadPool.cs">
+      <Link>Retlang.Core\IThreadPool.cs</Link>
+    </Compile>
+    <Compile Include="..\Retlang\Retlang.Core\Lists.cs">
+      <Link>Retlang.Core\Lists.cs</Link>
+    </Compile>
+    <Compile Include="..\Retlang\Retlang.Core\PendingAction.cs">
+      <Link>Retlang.Core\PendingAction.cs</Link>
+    </Compile>
+    <Compile Include="..\Retlang\Retlang.Core\QueueFullException.cs">
+      <Link>Retlang.Core\QueueFullException.cs</Link>
+    </Compile>
+    <Compile Include="..\Retlang\Retlang.Core\RecurringEvent.cs">
+      <Link>Retlang.Core\RecurringEvent.cs</Link>
+    </Compile>
+    <Compile Include="..\Retlang\Retlang.Core\Scheduler.cs">
+      <Link>Retlang.Core\Scheduler.cs</Link>
+    </Compile>
+    <Compile Include="..\Retlang\Retlang.Core\SingleEvent.cs">
+      <Link>Retlang.Core\SingleEvent.cs</Link>
+    </Compile>
+    <Compile Include="..\Retlang\Retlang.Core\Subscriptions.cs">
+      <Link>Retlang.Core\Subscriptions.cs</Link>
+    </Compile>
+    <Compile Include="..\Retlang\Retlang.Core\TimerAction.cs">
+      <Link>Retlang.Core\TimerAction.cs</Link>
+    </Compile>
+    <Compile Include="..\Retlang\Retlang.Channels\BaseSubscription.cs">
+      <Link>Retlang.Channels\BaseSubscription.cs</Link>
+    </Compile>
+    <Compile Include="..\Retlang\Retlang.Channels\BatchSubscriber.cs">
+      <Link>Retlang.Channels\BatchSubscriber.cs</Link>
+    </Compile>
+    <Compile Include="..\Retlang\Retlang.Channels\Channel.cs">
+      <Link>Retlang.Channels\Channel.cs</Link>
+    </Compile>
+    <Compile Include="..\Retlang\Retlang.Channels\ChannelRequest.cs">
+      <Link>Retlang.Channels\ChannelRequest.cs</Link>
+    </Compile>
+    <Compile Include="..\Retlang\Retlang.Channels\ChannelSubscription.cs">
+      <Link>Retlang.Channels\ChannelSubscription.cs</Link>
+    </Compile>
+    <Compile Include="..\Retlang\Retlang.Channels\IChannel.cs">
+      <Link>Retlang.Channels\IChannel.cs</Link>
+    </Compile>
+    <Compile Include="..\Retlang\Retlang.Channels\IProducerThreadSubscriber.cs">
+      <Link>Retlang.Channels\IProducerThreadSubscriber.cs</Link>
+    </Compile>
+    <Compile Include="..\Retlang\Retlang.Channels\IPublisher.cs">
+      <Link>Retlang.Channels\IPublisher.cs</Link>
+    </Compile>
+    <Compile Include="..\Retlang\Retlang.Channels\IQueueChannel.cs">
+      <Link>Retlang.Channels\IQueueChannel.cs</Link>
+    </Compile>
+    <Compile Include="..\Retlang\Retlang.Channels\IReply.cs">
+      <Link>Retlang.Channels\IReply.cs</Link>
+    </Compile>
+    <Compile Include="..\Retlang\Retlang.Channels\IReplySubscriber.cs">
+      <Link>Retlang.Channels\IReplySubscriber.cs</Link>
+    </Compile>
+    <Compile Include="..\Retlang\Retlang.Channels\IRequest.cs">
+      <Link>Retlang.Channels\IRequest.cs</Link>
+    </Compile>
+    <Compile Include="..\Retlang\Retlang.Channels\IRequestPublisher.cs">
+      <Link>Retlang.Channels\IRequestPublisher.cs</Link>
+    </Compile>
+    <Compile Include="..\Retlang\Retlang.Channels\IRequestReplyChannel.cs">
+      <Link>Retlang.Channels\IRequestReplyChannel.cs</Link>
+    </Compile>
+    <Compile Include="..\Retlang\Retlang.Channels\ISnapshotChannel.cs">
+      <Link>Retlang.Channels\ISnapshotChannel.cs</Link>
+    </Compile>
+    <Compile Include="..\Retlang\Retlang.Channels\ISubscribable.cs">
+      <Link>Retlang.Channels\ISubscribable.cs</Link>
+    </Compile>
+    <Compile Include="..\Retlang\Retlang.Channels\ISubscriber.cs">
+      <Link>Retlang.Channels\ISubscriber.cs</Link>
+    </Compile>
+    <Compile Include="..\Retlang\Retlang.Channels\KeyedBatchSubscriber.cs">
+      <Link>Retlang.Channels\KeyedBatchSubscriber.cs</Link>
+    </Compile>
+    <Compile Include="..\Retlang\Retlang.Channels\LastSubscriber.cs">
+      <Link>Retlang.Channels\LastSubscriber.cs</Link>
+    </Compile>
+    <Compile Include="..\Retlang\Retlang.Channels\QueueChannel.cs">
+      <Link>Retlang.Channels\QueueChannel.cs</Link>
+    </Compile>
+    <Compile Include="..\Retlang\Retlang.Channels\QueueConsumer.cs">
+      <Link>Retlang.Channels\QueueConsumer.cs</Link>
+    </Compile>
+    <Compile Include="..\Retlang\Retlang.Channels\RequestReplyChannel.cs">
+      <Link>Retlang.Channels\RequestReplyChannel.cs</Link>
+    </Compile>
+    <Compile Include="..\Retlang\Retlang.Channels\SnapshotChannel.cs">
+      <Link>Retlang.Channels\SnapshotChannel.cs</Link>
+    </Compile>
+    <Compile Include="..\Retlang\Retlang.Channels\Unsubscriber.cs">
+      <Link>Retlang.Channels\Unsubscriber.cs</Link>
+    </Compile>
+  </ItemGroup>
+</Project>
