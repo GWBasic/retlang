@@ -112,6 +112,7 @@
     <Compile Include="Retlang.Fibers\StubFiber.cs" />
     <Compile Include="Retlang.Fibers\StubScheduledAction.cs" />
     <Compile Include="Retlang.Fibers\ThreadFiber.cs" />
+    <Compile Include="Retlang.Fibers\BaseFiber.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Retlang.snk" />

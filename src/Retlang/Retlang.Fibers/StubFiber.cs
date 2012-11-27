@@ -83,7 +83,7 @@ namespace Retlang.Fibers
         ///<summary>
         /// Number of subscriptions.
         ///</summary>
-        public int NumSubscriptions
+        public int Count
         {
             get { return _subscriptions.Count; }
         }

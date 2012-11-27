@@ -85,6 +85,9 @@
     <Compile Include="..\Retlang\Retlang.Fibers\StubScheduledAction.cs">
       <Link>Retlang.Fibers\StubScheduledAction.cs</Link>
     </Compile>
+    <Compile Include="..\Retlang\Retlang.Fibers\BaseFiber.cs">
+      <Link>Retlang.Fibers\BaseFiber.cs</Link>
+    </Compile>
     <Compile Include="..\Retlang\Retlang.Fibers\ThreadFiber.cs">
       <Link>Retlang.Fibers\ThreadFiber.cs</Link>
     </Compile>

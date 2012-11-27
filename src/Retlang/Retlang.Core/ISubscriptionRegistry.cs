@@ -7,6 +7,11 @@ namespace Retlang.Core
     ///</summary>
     public interface ISubscriptionRegistry
     {
+		/// <summary>
+		/// Returns the number of subscriptions.
+		/// </summary>
+		int Count { get; }
+
         ///<summary>
         /// Register subscription to be unsubcribed from when the fiber is disposed.
         ///</summary>

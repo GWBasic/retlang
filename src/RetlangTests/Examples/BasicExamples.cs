@@ -152,15 +152,15 @@ namespace RetlangTests.Examples
             fiber.Start();
             var channel = new Channel<int>();
 
-            Assert.AreEqual(0, fiber.NumSubscriptions);
+            Assert.AreEqual(0, fiber.Count);
             Assert.AreEqual(0, channel.NumSubscribers);
             channel.Subscribe(fiber, x => { });
 
-            Assert.AreEqual(1, fiber.NumSubscriptions);
+			Assert.AreEqual(1, fiber.Count);
             Assert.AreEqual(1, channel.NumSubscribers);
             fiber.Dispose();
 
-            Assert.AreEqual(0, fiber.NumSubscriptions);
+			Assert.AreEqual(0, fiber.Count);
             Assert.AreEqual(0, channel.NumSubscribers);
         }
 
@@ -171,15 +171,15 @@ namespace RetlangTests.Examples
             fiber.Start();
             var channel = new Channel<int>();
 
-            Assert.AreEqual(0, fiber.NumSubscriptions);
+			Assert.AreEqual(0, fiber.Count);
             Assert.AreEqual(0, channel.NumSubscribers);
             channel.Subscribe(fiber, x => { });
 
-            Assert.AreEqual(1, fiber.NumSubscriptions);
+			Assert.AreEqual(1, fiber.Count);
             Assert.AreEqual(1, channel.NumSubscribers);
             fiber.Dispose();
 
-            Assert.AreEqual(0, fiber.NumSubscriptions);
+			Assert.AreEqual(0, fiber.Count);
             Assert.AreEqual(0, channel.NumSubscribers);
         }
 
@@ -190,15 +190,15 @@ namespace RetlangTests.Examples
             fiber.Start();
             var channel = new Channel<int>();
 
-            Assert.AreEqual(0, fiber.NumSubscriptions);
+			Assert.AreEqual(0, fiber.Count);
             Assert.AreEqual(0, channel.NumSubscribers);
             channel.Subscribe(fiber, x => { });
 
-            Assert.AreEqual(1, fiber.NumSubscriptions);
+			Assert.AreEqual(1, fiber.Count);
             Assert.AreEqual(1, channel.NumSubscribers);
             fiber.Dispose();
 
-            Assert.AreEqual(0, fiber.NumSubscriptions);
+			Assert.AreEqual(0, fiber.Count);
             Assert.AreEqual(0, channel.NumSubscribers);
         }
 
@@ -209,15 +209,15 @@ namespace RetlangTests.Examples
             fiber.Start();
             var channel = new Channel<int>();
 
-            Assert.AreEqual(0, fiber.NumSubscriptions);
+			Assert.AreEqual(0, fiber.Count);
             Assert.AreEqual(0, channel.NumSubscribers);
             var unsubscriber = channel.Subscribe(fiber, x => { });
 
-            Assert.AreEqual(1, fiber.NumSubscriptions);
+			Assert.AreEqual(1, fiber.Count);
             Assert.AreEqual(1, channel.NumSubscribers);
             unsubscriber.Dispose();
 
-            Assert.AreEqual(0, fiber.NumSubscriptions);
+			Assert.AreEqual(0, fiber.Count);
             Assert.AreEqual(0, channel.NumSubscribers);
         }
     }

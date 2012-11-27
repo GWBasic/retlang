@@ -8,12 +8,10 @@ namespace Retlang.Fibers
     /// <summary>
     /// Fiber that uses a thread pool for execution.
     /// </summary>
-    public class PoolFiber : IFiber
+    public class PoolFiber : BaseFiber
     {
-        private readonly Subscriptions _subscriptions = new Subscriptions();
         private readonly object _lock = new object();
         private readonly IThreadPool _pool;
-        private readonly Scheduler _timer;
         private readonly IExecutor _executor;
 
         private List<Action> _queue = new List<Action>();
@@ -29,7 +27,6 @@ namespace Retlang.Fibers
         /// <param name="executor"></param>
         public PoolFiber(IThreadPool pool, IExecutor executor)
         {
-            _timer = new Scheduler(this);
             _pool = pool;
             _executor = executor;
         }
@@ -50,11 +47,25 @@ namespace Retlang.Fibers
         {
         }
 
+		/// <summary>
+		/// Start consuming actions.
+		/// </summary>
+		public override void Start()
+		{
+			if (_started == ExecutionState.Running)
+			{
+				throw new ThreadStateException("Already Started");
+			}
+			_started = ExecutionState.Running;
+			//flush any pending events in queue
+			Enqueue(() => { });
+		}
+
         /// <summary>
         /// Enqueue a single action.
         /// </summary>
         /// <param name="action"></param>
-        public void Enqueue(Action action)
+        public override void Enqueue(Action action)
         {
             if (_started == ExecutionState.Stopped)
             {
@@ -74,33 +85,6 @@ namespace Retlang.Fibers
                     _flushPending = true;
                 }
             }
-        }
-
-        ///<summary>
-        /// Register subscription to be unsubcribed from when the fiber is disposed.
-        ///</summary>
-        ///<param name="toAdd"></param>
-        public void RegisterSubscription(IDisposable toAdd)
-        {
-            _subscriptions.Add(toAdd);
-        }
-
-        ///<summary>
-        /// Deregister a subscription.
-        ///</summary>
-        ///<param name="toRemove"></param>
-        ///<returns></returns>
-        public bool DeregisterSubscription(IDisposable toRemove)
-        {
-            return _subscriptions.Remove(toRemove);
-        }
-
-        ///<summary>
-        /// Number of subscriptions.
-        ///</summary>
-        public int NumSubscriptions
-        {
-            get { return _subscriptions.Count; }
         }
 
         private void Flush(object state)
@@ -140,58 +124,12 @@ namespace Retlang.Fibers
         }
 
         /// <summary>
-        /// <see cref="IScheduler.Schedule(Action,long)"/>
-        /// </summary>
-        /// <param name="action"></param>
-        /// <param name="firstInMs"></param>
-        /// <returns></returns>
-        public IDisposable Schedule(Action action, long firstInMs)
-        {
-            return _timer.Schedule(action, firstInMs);
-        }
-
-        /// <summary>
-        /// <see cref="IScheduler.ScheduleOnInterval(Action,long,long)"/>
-        /// </summary>
-        /// <param name="action"></param>
-        /// <param name="firstInMs"></param>
-        /// <param name="regularInMs"></param>
-        /// <returns></returns>
-        public IDisposable ScheduleOnInterval(Action action, long firstInMs, long regularInMs)
-        {
-            return _timer.ScheduleOnInterval(action, firstInMs, regularInMs);
-        }
-
-        /// <summary>
-        /// Start consuming actions.
-        /// </summary>
-        public void Start()
-        {
-            if (_started == ExecutionState.Running)
-            {
-                throw new ThreadStateException("Already Started");
-            }
-            _started = ExecutionState.Running;
-            //flush any pending events in queue
-            Enqueue(() => { });
-        }
-
-        /// <summary>
-        /// Stop consuming actions.
-        /// </summary>
-        public void Stop()
-        {
-            _timer.Dispose();
-            _started = ExecutionState.Stopped;
-            _subscriptions.Dispose();
-        }
-
-        /// <summary>
         /// Stops the fiber.
         /// </summary>
-        public void Dispose()
+        public override void Dispose()
         {
-            Stop();
+			base.Dispose();
+			_started = ExecutionState.Stopped;
         }
     }
 }
