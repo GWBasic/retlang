@@ -7,7 +7,7 @@ namespace Retlang.Fibers
     public class NSObjectFiber : ContextFiber
     {
         public NSObjectFiber (IExecutor executor)
-            : base(new NSObjectAdapter(), executor)
+            : base(new NSObjectContext(), executor)
         {
             
         }
