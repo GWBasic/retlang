@@ -16,8 +16,6 @@ namespace Retlang.Fibers
         private readonly IExecutor _executor;
         private readonly List<Action> _queue = new List<Action>();
 
-        private volatile ExecutionState _started = ExecutionState.Created;
-
         /// <summary>
         /// Creates an instance.
         /// </summary>
@@ -32,11 +30,8 @@ namespace Retlang.Fibers
         /// </summary>
         public override void Start()
         {
-            if (_started == ExecutionState.Running)
-            {
-                throw new ThreadStateException("Already Started");
-            }
-            
+            base.Start();
+
             lock (_lock)
             {
                 var actions = _queue.ToList();
@@ -45,7 +40,6 @@ namespace Retlang.Fibers
                 {
                     _executionContext.Enqueue(() => _executor.Execute(actions));
                 }
-                _started = ExecutionState.Running;
             }
         }
 
@@ -55,16 +49,16 @@ namespace Retlang.Fibers
         /// <param name="action"></param>
         public override void Enqueue(Action action)
         {
-            if (_started == ExecutionState.Stopped)
+            if (_state == ExecutionState.Stopped)
             {
                 return;
             }
 
-            if (_started == ExecutionState.Created)
+            if (_state == ExecutionState.Created)
             {
                 lock (_lock)
                 {
-                    if (_started == ExecutionState.Created)
+                    if (_state == ExecutionState.Created)
                     {
                         _queue.Add(action);
                         return;
@@ -73,15 +67,6 @@ namespace Retlang.Fibers
             }
 
             _executionContext.Enqueue(() => _executor.Execute(action));
-        }
-
-        /// <summary>
-        /// <see cref="IDisposable.Dispose()"/>
-        /// </summary>
-        public override void Dispose()
-        {
-            base.Dispose();
-            _started = ExecutionState.Stopped;
         }
     }
 }

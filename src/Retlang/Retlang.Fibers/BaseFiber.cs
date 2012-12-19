@@ -1,10 +1,12 @@
 using System;
 using Retlang.Core;
+using System.Threading;
 
 namespace Retlang.Fibers
 {
     public abstract class BaseFiber : IFiber
     {
+        protected volatile ExecutionState _state = ExecutionState.Created;
         private readonly Subscriptions _subscriptions = new Subscriptions();
         private readonly Scheduler _scheduler;
 
@@ -13,7 +15,17 @@ namespace Retlang.Fibers
             _scheduler = new Scheduler(this);
         }
 
-        public abstract void Start();
+        public virtual void Start()
+        {
+            if (_state != ExecutionState.Created)
+            {
+                var message = String.Format("Start() called on Fiber with state: {0}", _state);
+                throw new ThreadStateException(message);
+            }
+
+            _state = ExecutionState.Running;
+        }
+
         public abstract void Enqueue(Action action);
 
         public int SubscriptionsCount
@@ -43,6 +55,7 @@ namespace Retlang.Fibers
 
         public virtual void Dispose()
         {
+            _state = ExecutionState.Stopped;
             _scheduler.Dispose();
             _subscriptions.Dispose();
         }

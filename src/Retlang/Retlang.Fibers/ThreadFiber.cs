@@ -84,6 +84,7 @@ namespace Retlang.Fibers
         /// </summary>
         public override void Start()
         {
+            base.Start();
             _thread.Start();
         }
 

@@ -17,7 +17,6 @@ namespace Retlang.Fibers
         private List<Action> _queue = new List<Action>();
         private List<Action> _toPass = new List<Action>();
 
-        private ExecutionState _started = ExecutionState.Created;
         private bool _flushPending;
 
         /// <summary>
@@ -52,11 +51,7 @@ namespace Retlang.Fibers
         /// </summary>
         public override void Start()
         {
-            if (_started == ExecutionState.Running)
-            {
-                throw new ThreadStateException("Already Started");
-            }
-            _started = ExecutionState.Running;
+            base.Start();
             //flush any pending events in queue
             Enqueue(() => { });
         }
@@ -67,7 +62,7 @@ namespace Retlang.Fibers
         /// <param name="action"></param>
         public override void Enqueue(Action action)
         {
-            if (_started == ExecutionState.Stopped)
+            if (_state == ExecutionState.Stopped)
             {
                 return;
             }
@@ -75,7 +70,7 @@ namespace Retlang.Fibers
             lock (_lock)
             {
                 _queue.Add(action);
-                if (_started == ExecutionState.Created)
+                if (_state == ExecutionState.Created)
                 {
                     return;
                 }
@@ -121,15 +116,6 @@ namespace Retlang.Fibers
                 _queue.Clear();
                 return _toPass;
             }
-        }
-
-        /// <summary>
-        /// Stops the fiber.
-        /// </summary>
-        public override void Dispose()
-        {
-            base.Dispose();
-            _started = ExecutionState.Stopped;
         }
     }
 }
