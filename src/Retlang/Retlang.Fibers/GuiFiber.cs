@@ -49,24 +49,23 @@ namespace Retlang.Fibers
         /// <param name="action"></param>
         public override void Enqueue(Action action)
         {
-            if (_state == ExecutionState.Stopped)
+            switch (_state)
             {
-                return;
-            }
-
-            if (_state == ExecutionState.Created)
-            {
-                lock (_lock)
-                {
-                    if (_state == ExecutionState.Created)
+                case ExecutionState.Stopped:
+                    return;
+                case ExecutionState.Created:
+                    lock (_lock)
                     {
-                        _queue.Add(action);
-                        return;
+                        if (_state == ExecutionState.Created)
+                        {
+                            _queue.Add(action);
+                        }
                     }
-                }
+                    break;
+                default:
+                    _executionContext.Enqueue(() => _executor.Execute(action));
+                    break;
             }
-
-            _executionContext.Enqueue(() => _executor.Execute(action));
         }
     }
 }
