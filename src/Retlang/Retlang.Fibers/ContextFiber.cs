@@ -7,9 +7,10 @@ using Retlang.Core;
 namespace Retlang.Fibers
 {
     ///<summary>
-    /// Allows interaction with Windows Forms.  Transparently moves actions onto the Form's thread.
+    /// Allows interaction with an IExecutionContext. Useful for interacting with an outside
+    /// threading model, such as that of a UI toolkit.
     ///</summary>
-    public class GuiFiber : BaseFiber
+    public class ContextFiber : BaseFiber
     {
         private readonly object _lock = new object();
         private readonly IExecutionContext _executionContext;
@@ -19,7 +20,7 @@ namespace Retlang.Fibers
         /// <summary>
         /// Creates an instance.
         /// </summary>
-        public GuiFiber(IExecutionContext executionContext, IExecutor executor)
+        public ContextFiber(IExecutionContext executionContext, IExecutor executor)
         {
             _executionContext = executionContext;
             _executor = executor;

@@ -106,13 +106,13 @@
     <Compile Include="Retlang.Core\Subscriptions.cs" />
     <Compile Include="Retlang.Core\TimerAction.cs" />
     <Compile Include="Retlang.Fibers\ExecutionState.cs" />
-    <Compile Include="Retlang.Fibers\GuiFiber.cs" />
     <Compile Include="Retlang.Fibers\IFiber.cs" />
     <Compile Include="Retlang.Fibers\PoolFiber.cs" />
     <Compile Include="Retlang.Fibers\StubFiber.cs" />
     <Compile Include="Retlang.Fibers\StubScheduledAction.cs" />
     <Compile Include="Retlang.Fibers\ThreadFiber.cs" />
     <Compile Include="Retlang.Fibers\BaseFiber.cs" />
+    <Compile Include="Retlang.Fibers\ContextFiber.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Retlang.snk" />

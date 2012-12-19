@@ -4,7 +4,7 @@ using Retlang.Core;
 
 namespace Retlang.Fibers
 {
-    public class NSObjectFiber : GuiFiber
+    public class NSObjectFiber : ContextFiber
     {
         public NSObjectFiber (IExecutor executor)
             : base(new NSObjectAdapter(), executor)

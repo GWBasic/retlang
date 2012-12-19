@@ -39,9 +39,6 @@
     <Compile Include="..\Retlang\Retlang.Fibers\ExecutionState.cs">
       <Link>Retlang.Fibers\ExecutionState.cs</Link>
     </Compile>
-    <Compile Include="..\Retlang\Retlang.Fibers\GuiFiber.cs">
-      <Link>Retlang.Fibers\GuiFiber.cs</Link>
-    </Compile>
     <Compile Include="..\Retlang\Retlang.Fibers\IFiber.cs">
       <Link>Retlang.Fibers\IFiber.cs</Link>
     </Compile>
@@ -197,6 +194,9 @@
     </Compile>
     <Compile Include="Retlang.Fibers\NSObjectAdapter.cs" />
     <Compile Include="Retlang.Fibers\NSObjectFiber.cs" />
+    <Compile Include="..\Retlang\Retlang.Fibers\ContextFiber.cs">
+      <Link>Retlang.Fibers\ContextFiber.cs</Link>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Retlang.Core\" />
