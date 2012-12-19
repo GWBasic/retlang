@@ -49,10 +49,12 @@ namespace Retlang.Fibers
         public ThreadFiber(IQueue queue, string threadName, bool isBackground = true, ThreadPriority priority = ThreadPriority.Normal)
         {
             _queue = queue;
-            _thread = new Thread(RunThread);
-            _thread.Name = threadName;
-            _thread.IsBackground = isBackground;
-            _thread.Priority = priority;
+            _thread = new Thread(_queue.Run)
+            {
+                Name = threadName,
+                IsBackground = isBackground,
+                Priority = priority,
+            };
         }
 
         /// <summary>
@@ -66,11 +68,6 @@ namespace Retlang.Fibers
         private static int GetNextThreadId()
         {
             return Interlocked.Increment(ref THREAD_COUNT);
-        }
-
-        private void RunThread()
-        {
-            _queue.Run();
         }
 
         /// <summary>
