@@ -3,6 +3,7 @@ tags
 *.swp
 *.swo
 *.suo
+*.swn
 *.userprefs
 
 test-results/
