@@ -4,11 +4,11 @@ using Retlang.Core;
 
 namespace Retlang.Fibers
 {
-    internal class FormAdapter : IExecutionContext
+    internal class FormContext : IExecutionContext
     {
         private readonly ISynchronizeInvoke _invoker;
 
-        public FormAdapter(ISynchronizeInvoke invoker)
+        public FormContext(ISynchronizeInvoke invoker)
         {
             _invoker = invoker;
         }

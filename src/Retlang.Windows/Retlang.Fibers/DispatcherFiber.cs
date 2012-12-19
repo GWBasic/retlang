@@ -6,7 +6,7 @@ namespace Retlang.Fibers
     /// <summary>
     /// Adapts Dispatcher to a Fiber. Transparently moves actions onto the Dispatcher thread.
     /// </summary>
-    public class DispatcherFiber : GuiFiber
+    public class DispatcherFiber : ContextFiber
     {
         /// <summary>
         /// Constructs a Fiber that executes on dispatcher thread.
@@ -15,7 +15,7 @@ namespace Retlang.Fibers
         /// <param name="priority">The priority.</param>
         /// <param name="executor">The executor.</param>
         public DispatcherFiber(Dispatcher dispatcher, DispatcherPriority priority, IExecutor executor)
-            : base(new DispatcherAdapter(dispatcher, priority), executor)
+            : base(new DispatcherContext(dispatcher, priority), executor)
         {
         }
 

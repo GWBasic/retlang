@@ -4,12 +4,12 @@ using Retlang.Core;
 
 namespace Retlang.Fibers
 {
-    internal class DispatcherAdapter : IExecutionContext
+    internal class DispatcherContext : IExecutionContext
     {
         private readonly Dispatcher _dispatcher;
         private readonly DispatcherPriority _priority;
 
-        public DispatcherAdapter(Dispatcher dispatcher, DispatcherPriority priority)
+        public DispatcherContext(Dispatcher dispatcher, DispatcherPriority priority)
         {
             _dispatcher = dispatcher;
             _priority = priority;

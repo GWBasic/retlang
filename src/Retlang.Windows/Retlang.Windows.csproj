@@ -171,11 +171,11 @@
     <Compile Include="..\Retlang\Retlang.Core\TimerAction.cs">
       <Link>Retlang.Core\TimerAction.cs</Link>
     </Compile>
+    <Compile Include="..\Retlang\Retlang.Fibers\ContextFiber.cs">
+      <Link>Retlang.Fibers\ContextFiber.cs</Link>
+    </Compile>
     <Compile Include="..\Retlang\Retlang.Fibers\ExecutionState.cs">
       <Link>Retlang.Fibers\ExecutionState.cs</Link>
-    </Compile>
-    <Compile Include="..\Retlang\Retlang.Fibers\GuiFiber.cs">
-      <Link>Retlang.Fibers\GuiFiber.cs</Link>
     </Compile>
     <Compile Include="..\Retlang\Retlang.Fibers\IFiber.cs">
       <Link>Retlang.Fibers\IFiber.cs</Link>
@@ -195,9 +195,9 @@
     <Compile Include="..\Retlang\Retlang.Fibers\ThreadFiber.cs">
       <Link>Retlang.Fibers\ThreadFiber.cs</Link>
     </Compile>
-    <Compile Include="Retlang.Fibers\DispatcherAdapter.cs" />
+    <Compile Include="Retlang.Fibers\DispatcherContext.cs" />
     <Compile Include="Retlang.Fibers\DispatcherFiber.cs" />
-    <Compile Include="Retlang.Fibers\FormAdapter.cs" />
+    <Compile Include="Retlang.Fibers\FormContext.cs" />
     <Compile Include="Retlang.Fibers\FormFiber.cs" />
   </ItemGroup>
   <ItemGroup>
