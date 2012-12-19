@@ -1,10 +1,10 @@
 using System;
 using Retlang.Core;
-using MonoTouch.Foundation;
+using MonoMac.Foundation;
 
 namespace Retlang.Fibers
 {
-    public class NSObjectAdapter : NSObject, IExecutionContext
+    public class NSObjectContext : NSObject, IExecutionContext
     {
         public void Enqueue(Action action)
         {

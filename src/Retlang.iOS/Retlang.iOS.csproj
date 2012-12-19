@@ -192,11 +192,11 @@
     <Compile Include="..\Retlang\Retlang.Channels\Unsubscriber.cs">
       <Link>Retlang.Channels\Unsubscriber.cs</Link>
     </Compile>
-    <Compile Include="Retlang.Fibers\NSObjectAdapter.cs" />
     <Compile Include="Retlang.Fibers\NSObjectFiber.cs" />
     <Compile Include="..\Retlang\Retlang.Fibers\ContextFiber.cs">
       <Link>Retlang.Fibers\ContextFiber.cs</Link>
     </Compile>
+    <Compile Include="Retlang.Fibers\NSObjectContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Retlang.Core\" />

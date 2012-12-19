@@ -4,11 +4,11 @@ using Android.OS;
 
 namespace Retlang.Fibers
 {
-    public class HandlerAdapter : IExecutionContext
+    public class HandlerContext : IExecutionContext
     {
         private readonly Handler _handler;
 
-        public HandlerAdapter (Handler handler)
+        public HandlerContext (Handler handler)
         {
             _handler = handler;
         }

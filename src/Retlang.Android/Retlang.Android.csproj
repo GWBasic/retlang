@@ -45,7 +45,6 @@
     <Folder Include="Retlang.Channels\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Retlang.Fibers\HandlerAdapter.cs" />
     <Compile Include="Retlang.Fibers\HandlerFiber.cs" />
     <Compile Include="..\Retlang\Retlang.Fibers\ExecutionState.cs">
       <Link>Retlang.Fibers\ExecutionState.cs</Link>
@@ -206,5 +205,6 @@
     <Compile Include="..\Retlang\Retlang.Fibers\ContextFiber.cs">
       <Link>Retlang.Fibers\ContextFiber.cs</Link>
     </Compile>
+    <Compile Include="Retlang.Fibers\HandlerContext.cs" />
   </ItemGroup>
 </Project>
