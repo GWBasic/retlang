@@ -81,7 +81,7 @@ namespace Retlang.Fibers
         {
             _queue.Enqueue(action);
         }
-		
+        
         /// <summary>
         /// <see cref="IFiber.Start"/>
         /// </summary>
@@ -103,7 +103,7 @@ namespace Retlang.Fibers
         /// </summary>
         public override void Dispose()
         {
-			base.Dispose();
+            base.Dispose();
             _queue.Stop();
         }
     }

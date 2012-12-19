@@ -156,11 +156,11 @@ namespace RetlangTests.Examples
             Assert.AreEqual(0, channel.SubscribersCount);
             channel.Subscribe(fiber, x => { });
 
-			Assert.AreEqual(1, fiber.SubscriptionsCount);
+            Assert.AreEqual(1, fiber.SubscriptionsCount);
             Assert.AreEqual(1, channel.SubscribersCount);
             fiber.Dispose();
 
-			Assert.AreEqual(0, fiber.SubscriptionsCount);
+            Assert.AreEqual(0, fiber.SubscriptionsCount);
             Assert.AreEqual(0, channel.SubscribersCount);
         }
 
@@ -171,15 +171,15 @@ namespace RetlangTests.Examples
             fiber.Start();
             var channel = new Channel<int>();
 
-			Assert.AreEqual(0, fiber.SubscriptionsCount);
+            Assert.AreEqual(0, fiber.SubscriptionsCount);
             Assert.AreEqual(0, channel.SubscribersCount);
             channel.Subscribe(fiber, x => { });
 
-			Assert.AreEqual(1, fiber.SubscriptionsCount);
+            Assert.AreEqual(1, fiber.SubscriptionsCount);
             Assert.AreEqual(1, channel.SubscribersCount);
             fiber.Dispose();
 
-			Assert.AreEqual(0, fiber.SubscriptionsCount);
+            Assert.AreEqual(0, fiber.SubscriptionsCount);
             Assert.AreEqual(0, channel.SubscribersCount);
         }
 
@@ -190,15 +190,15 @@ namespace RetlangTests.Examples
             fiber.Start();
             var channel = new Channel<int>();
 
-			Assert.AreEqual(0, fiber.SubscriptionsCount);
+            Assert.AreEqual(0, fiber.SubscriptionsCount);
             Assert.AreEqual(0, channel.SubscribersCount);
             channel.Subscribe(fiber, x => { });
 
-			Assert.AreEqual(1, fiber.SubscriptionsCount);
+            Assert.AreEqual(1, fiber.SubscriptionsCount);
             Assert.AreEqual(1, channel.SubscribersCount);
             fiber.Dispose();
 
-			Assert.AreEqual(0, fiber.SubscriptionsCount);
+            Assert.AreEqual(0, fiber.SubscriptionsCount);
             Assert.AreEqual(0, channel.SubscribersCount);
         }
 
@@ -209,15 +209,15 @@ namespace RetlangTests.Examples
             fiber.Start();
             var channel = new Channel<int>();
 
-			Assert.AreEqual(0, fiber.SubscriptionsCount);
+            Assert.AreEqual(0, fiber.SubscriptionsCount);
             Assert.AreEqual(0, channel.SubscribersCount);
             var unsubscriber = channel.Subscribe(fiber, x => { });
 
-			Assert.AreEqual(1, fiber.SubscriptionsCount);
+            Assert.AreEqual(1, fiber.SubscriptionsCount);
             Assert.AreEqual(1, channel.SubscribersCount);
             unsubscriber.Dispose();
 
-			Assert.AreEqual(0, fiber.SubscriptionsCount);
+            Assert.AreEqual(0, fiber.SubscriptionsCount);
             Assert.AreEqual(0, channel.SubscribersCount);
         }
     }

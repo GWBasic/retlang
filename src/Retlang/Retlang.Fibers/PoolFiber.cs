@@ -47,19 +47,19 @@ namespace Retlang.Fibers
         {
         }
 
-		/// <summary>
-		/// Start consuming actions.
-		/// </summary>
-		public override void Start()
-		{
-			if (_started == ExecutionState.Running)
-			{
-				throw new ThreadStateException("Already Started");
-			}
-			_started = ExecutionState.Running;
-			//flush any pending events in queue
-			Enqueue(() => { });
-		}
+        /// <summary>
+        /// Start consuming actions.
+        /// </summary>
+        public override void Start()
+        {
+            if (_started == ExecutionState.Running)
+            {
+                throw new ThreadStateException("Already Started");
+            }
+            _started = ExecutionState.Running;
+            //flush any pending events in queue
+            Enqueue(() => { });
+        }
 
         /// <summary>
         /// Enqueue a single action.
@@ -128,8 +128,8 @@ namespace Retlang.Fibers
         /// </summary>
         public override void Dispose()
         {
-			base.Dispose();
-			_started = ExecutionState.Stopped;
+            base.Dispose();
+            _started = ExecutionState.Stopped;
         }
     }
 }

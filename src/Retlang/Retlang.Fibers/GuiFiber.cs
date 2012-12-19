@@ -27,27 +27,27 @@ namespace Retlang.Fibers
             _executor = executor;
         }
 
-		/// <summary>
-		/// <see cref="IFiber.Start()"/>
-		/// </summary>
-		public override void Start()
-		{
-			if (_started == ExecutionState.Running)
-			{
-				throw new ThreadStateException("Already Started");
-			}
-			
-			lock (_lock)
-			{
-				var actions = _queue.ToList();
-				_queue.Clear();
-				if (actions.Count > 0)
-				{
-					_executionContext.Enqueue(() => _executor.Execute(actions));
-				}
-				_started = ExecutionState.Running;
-			}
-		}
+        /// <summary>
+        /// <see cref="IFiber.Start()"/>
+        /// </summary>
+        public override void Start()
+        {
+            if (_started == ExecutionState.Running)
+            {
+                throw new ThreadStateException("Already Started");
+            }
+            
+            lock (_lock)
+            {
+                var actions = _queue.ToList();
+                _queue.Clear();
+                if (actions.Count > 0)
+                {
+                    _executionContext.Enqueue(() => _executor.Execute(actions));
+                }
+                _started = ExecutionState.Running;
+            }
+        }
 
         /// <summary>
         /// Enqueue a single action.
@@ -80,8 +80,8 @@ namespace Retlang.Fibers
         /// </summary>
         public override void Dispose()
         {
-			base.Dispose();
-			_started = ExecutionState.Stopped;
+            base.Dispose();
+            _started = ExecutionState.Stopped;
         }
     }
 }

@@ -4,12 +4,12 @@ using MonoTouch.Foundation;
 
 namespace Retlang.Fibers
 {
-	public class NSObjectAdapter : NSObject, IExecutionContext
-	{
-		public void Enqueue(Action action)
-		{
-			BeginInvokeOnMainThread(() => action());
-		}
-	}
+    public class NSObjectAdapter : NSObject, IExecutionContext
+    {
+        public void Enqueue(Action action)
+        {
+            BeginInvokeOnMainThread(() => action());
+        }
+    }
 }
 
