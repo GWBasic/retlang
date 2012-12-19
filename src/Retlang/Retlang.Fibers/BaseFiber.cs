@@ -7,6 +7,7 @@ namespace Retlang.Fibers
     public abstract class BaseFiber : IFiber
     {
         protected volatile ExecutionState _state = ExecutionState.Created;
+
         private readonly Subscriptions _subscriptions = new Subscriptions();
         private readonly Scheduler _scheduler;
 
