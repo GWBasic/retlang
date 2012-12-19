@@ -114,7 +114,7 @@ namespace Retlang.Channels
         ///<summary>
         /// Number of subscribers
         ///</summary>
-        public int NumSubscribers
+        public int SubscribersCount
         {
             get
             {

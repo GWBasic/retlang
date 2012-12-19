@@ -10,7 +10,7 @@ namespace Retlang.Core
 		/// <summary>
 		/// Returns the number of subscriptions.
 		/// </summary>
-		int Count { get; }
+		int SubscriptionsCount { get; }
 
         ///<summary>
         /// Register subscription to be unsubcribed from when the fiber is disposed.

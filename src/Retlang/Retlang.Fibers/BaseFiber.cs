@@ -16,7 +16,7 @@ namespace Retlang.Fibers
         public abstract void Start();
         public abstract void Enqueue(Action action);
 
-        public int Count
+        public int SubscriptionsCount
         {
             get { return _subscriptions.Count; }
         }
