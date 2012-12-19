@@ -23,6 +23,14 @@ namespace Retlang.Fibers
         {}
 
         /// <summary>
+        /// Creates a thread fiber with a specified executor.
+        /// </summary>
+        /// <param name="queue"></param>
+        public ThreadFiber(IExecutor executor)
+            : this(new DefaultQueue(executor))
+        {}
+
+        /// <summary>
         /// Creates a thread fiber with a specified queue.
         /// </summary>
         /// <param name="queue"></param>
@@ -37,7 +45,6 @@ namespace Retlang.Fibers
         public ThreadFiber(string threadName)
             : this(new DefaultQueue(), threadName)
         {}
-
 
         /// <summary>
         /// Creates a thread fiber.
@@ -76,6 +83,11 @@ namespace Retlang.Fibers
         /// <param name="action"></param>
         public override void Enqueue(Action action)
         {
+            if (_state == ExecutionState.Stopped)
+            {
+                return;
+            }
+
             _queue.Enqueue(action);
         }
         
