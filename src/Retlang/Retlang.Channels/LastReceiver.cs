@@ -5,10 +5,10 @@ using Retlang.Fibers;
 namespace Retlang.Channels
 {
     /// <summary>
-    /// Subscribes to last action received on the channel. 
+    /// Receives the last action received on the channel over a time interval. 
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class LastSubscriber<T> : BaseReceiver<T>
+    public class LastReceiver<T> : BaseReceiver<T>
     {
         private readonly object _batchLock = new object();
 
@@ -24,7 +24,7 @@ namespace Retlang.Channels
         /// <param name="target"></param>
         /// <param name="fiber"></param>
         /// <param name="intervalInMs"></param>
-        public LastSubscriber(Action<T> target, IFiber fiber, long intervalInMs)
+        public LastReceiver(Action<T> target, IFiber fiber, long intervalInMs)
             : base(fiber)
         {
             _target = target;

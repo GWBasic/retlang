@@ -60,7 +60,7 @@ namespace Retlang.Channels
         /// <returns></returns>
         public IDisposable SubscribeToLast(IFiber fiber, Action<T> receive, long intervalInMs)
         {
-            return SubscribeOnProducerThreads(new LastSubscriber<T>(receive, fiber, intervalInMs));
+            return SubscribeOnProducerThreads(new LastReceiver<T>(receive, fiber, intervalInMs));
         }
 
         /// <summary>
