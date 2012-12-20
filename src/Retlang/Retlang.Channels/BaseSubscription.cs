@@ -1,3 +1,4 @@
+using System;
 using Retlang.Core;
 
 namespace Retlang.Channels
@@ -8,12 +9,12 @@ namespace Retlang.Channels
     /// <typeparam name="T"></typeparam>
     public abstract class BaseSubscription<T> : ISubscribable<T>
     {
-        private Filter<T> _filterOnProducerThread;
+        private Predicate<T> _filterOnProducerThread;
 
         /// <summary>
         /// <see cref="ISubscribable{T}.FilterOnProducerThread"/>
         /// </summary>
-        public Filter<T> FilterOnProducerThread
+        public Predicate<T> FilterOnProducerThread
         {
             get { return _filterOnProducerThread; }
             set { _filterOnProducerThread = value; }
