@@ -68,9 +68,9 @@ namespace Retlang.Channels
         /// </summary>
         /// <param name="subscriber"></param>
         /// <returns></returns>
-        public IDisposable SubscribeOnProducerThreads(IProducerThreadReceiver<T> subscriber)
+        public IDisposable SubscribeOnProducerThreads(IProducerThreadReceiver<T> receiver)
         {
-            return SubscribeOnProducerThreads(subscriber.ReceiveOnProducerThread, subscriber.Subscriptions);
+            return SubscribeOnProducerThreads(receiver.ReceiveOnProducerThread, receiver.Subscriptions);
         }
 
         /// <summary>

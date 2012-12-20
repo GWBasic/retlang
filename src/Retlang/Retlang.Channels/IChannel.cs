@@ -14,6 +14,6 @@ namespace Retlang.Channels
         /// </summary>
         /// <param name="subscriber"></param>
         /// <returns></returns>
-        IDisposable SubscribeOnProducerThreads(IProducerThreadReceiver<T> subscriber);
+        IDisposable SubscribeOnProducerThreads(IProducerThreadReceiver<T> receiver);
     }
 }
