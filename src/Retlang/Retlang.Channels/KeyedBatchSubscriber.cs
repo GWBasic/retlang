@@ -10,7 +10,7 @@ namespace Retlang.Channels
     /// </summary>
     /// <typeparam name="K"></typeparam>
     /// <typeparam name="T"></typeparam>
-    public class KeyedBatchSubscriber<K, T> : BaseSubscription<T>
+    public class KeyedBatchSubscriber<K, T> : BaseReceiver<T>
     {
         private readonly object _batchLock = new object();
 

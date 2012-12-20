@@ -8,7 +8,7 @@ namespace Retlang.Channels
     /// Subscribes to last action received on the channel. 
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class LastSubscriber<T> : BaseSubscription<T>
+    public class LastSubscriber<T> : BaseReceiver<T>
     {
         private readonly object _batchLock = new object();
 

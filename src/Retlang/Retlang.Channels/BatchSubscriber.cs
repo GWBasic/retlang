@@ -9,7 +9,7 @@ namespace Retlang.Channels
     /// Batches actions for the consuming thread.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class BatchSubscriber<T> : BaseSubscription<T>
+    public class BatchSubscriber<T> : BaseReceiver<T>
     {
         private readonly object _batchLock = new object();
 

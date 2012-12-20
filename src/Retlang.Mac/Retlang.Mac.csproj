@@ -151,9 +151,6 @@
     <Compile Include="..\Retlang\Retlang.Core\TimerAction.cs">
       <Link>Retlang.Core\TimerAction.cs</Link>
     </Compile>
-    <Compile Include="..\Retlang\Retlang.Channels\BaseSubscription.cs">
-      <Link>Retlang.Channels\BaseSubscription.cs</Link>
-    </Compile>
     <Compile Include="..\Retlang\Retlang.Channels\BatchSubscriber.cs">
       <Link>Retlang.Channels\BatchSubscriber.cs</Link>
     </Compile>
@@ -228,5 +225,8 @@
       <Link>Retlang.Fibers\ContextFiber.cs</Link>
     </Compile>
     <Compile Include="Retlang.Fibers\NSObjectContext.cs" />
+    <Compile Include="..\Retlang\Retlang.Channels\BaseReceiver.cs">
+      <Link>Retlang.Channels\BaseReceiver.cs</Link>
+    </Compile>
   </ItemGroup>
 </Project>

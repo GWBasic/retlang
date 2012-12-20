@@ -36,8 +36,8 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\Retlang\Retlang.Channels\BaseSubscription.cs">
-      <Link>Retlang.Channels\BaseSubscription.cs</Link>
+    <Compile Include="..\Retlang\Retlang.Channels\BaseReceiver.cs">
+      <Link>Retlang.Channels\BaseReceiver.cs</Link>
     </Compile>
     <Compile Include="..\Retlang\Retlang.Channels\BatchSubscriber.cs">
       <Link>Retlang.Channels\BatchSubscriber.cs</Link>

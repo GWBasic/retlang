@@ -8,7 +8,7 @@ namespace Retlang.Channels
     /// Subscription for actions on a channel.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class ChannelSubscription<T> : BaseSubscription<T>
+    public class ChannelSubscription<T> : BaseReceiver<T>
     {
         private readonly Action<T> _receiver;
         private readonly IFiber _fiber;
