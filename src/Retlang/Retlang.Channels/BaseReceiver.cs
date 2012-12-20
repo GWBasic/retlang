@@ -9,21 +9,10 @@ namespace Retlang.Channels
     /// <typeparam name="T"></typeparam>
     public abstract class BaseReceiver<T> : IReceiver<T>
     {
-        private Predicate<T> _filterOnProducerThread;
-
         /// <summary>
         /// <see cref="IReceiver{T}.FilterOnProducerThread"/>
         /// </summary>
-        public Predicate<T> FilterOnProducerThread
-        {
-            get { return _filterOnProducerThread; }
-            set { _filterOnProducerThread = value; }
-        }
-
-        private bool PassesProducerThreadFilter(T msg)
-        {
-            return _filterOnProducerThread == null || _filterOnProducerThread(msg);
-        }
+        public Predicate<T> FilterOnProducerThread { get; set; }
 
         /// <summary>
         /// <see cref="IProducerThreadReceiver{T}.ReceiveOnProducerThread"/>
@@ -31,7 +20,12 @@ namespace Retlang.Channels
         /// <param name="msg"></param>
         public void ReceiveOnProducerThread(T msg)
         {
-            if (PassesProducerThreadFilter(msg))
+            var filter = FilterOnProducerThread; // copy reference for thread safety
+            if (filter != null && !filter(msg))
+            {
+                return;
+            }
+            else
             {
                 OnMessageOnProducerThread(msg);
             }
