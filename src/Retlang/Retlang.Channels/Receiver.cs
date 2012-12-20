@@ -11,7 +11,6 @@ namespace Retlang.Channels
     public class Receiver<T> : BaseReceiver<T>
     {
         private readonly Action<T> _receiver;
-        private readonly IFiber _fiber;
 
         /// <summary>
         /// Construct the subscription
@@ -19,17 +18,9 @@ namespace Retlang.Channels
         /// <param name="fiber"></param>
         /// <param name="receiver"></param>
         public Receiver(IFiber fiber, Action<T> receiver)
+            : base(fiber)
         {
-            _fiber = fiber;
             _receiver = receiver;
-        }
-
-        ///<summary>
-        /// Allows for the registration and deregistration of subscriptions
-        ///</summary>
-        public override ISubscriptionRegistry Subscriptions
-        {
-            get { return _fiber; }
         }
 
         /// <summary>

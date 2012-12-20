@@ -1,5 +1,6 @@
 using System;
 using Retlang.Core;
+using Retlang.Fibers;
 
 namespace Retlang.Channels
 {
@@ -9,10 +10,25 @@ namespace Retlang.Channels
     /// <typeparam name="T"></typeparam>
     public abstract class BaseReceiver<T> : IReceiver<T>
     {
+        protected readonly IFiber _fiber;
+
+        protected BaseReceiver(IFiber fiber)
+        {
+            _fiber = fiber;
+        }
+
         /// <summary>
         /// <see cref="IReceiver{T}.FilterOnProducerThread"/>
         /// </summary>
         public Predicate<T> FilterOnProducerThread { get; set; }
+
+        ///<summary>
+        /// Allows for the registration and deregistration of subscriptions
+        ///</summary>
+        public ISubscriptionRegistry Subscriptions
+        {
+            get { return _fiber; }
+        }
 
         /// <summary>
         /// <see cref="IProducerThreadReceiver{T}.ReceiveOnProducerThread"/>
@@ -30,11 +46,6 @@ namespace Retlang.Channels
                 OnMessageOnProducerThread(msg);
             }
         }
-
-        ///<summary>
-        /// Allows for the registration and deregistration of subscriptions
-        ///</summary>
-        public abstract ISubscriptionRegistry Subscriptions { get; }
 
         /// <summary>
         /// Called after message has been filtered.

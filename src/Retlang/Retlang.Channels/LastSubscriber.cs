@@ -13,7 +13,6 @@ namespace Retlang.Channels
         private readonly object _batchLock = new object();
 
         private readonly Action<T> _target;
-        private readonly IFiber _fiber;
         private readonly long _intervalInMs;
 
         private bool _flushPending;
@@ -26,18 +25,10 @@ namespace Retlang.Channels
         /// <param name="fiber"></param>
         /// <param name="intervalInMs"></param>
         public LastSubscriber(Action<T> target, IFiber fiber, long intervalInMs)
+            : base(fiber)
         {
-            _fiber = fiber;
             _target = target;
             _intervalInMs = intervalInMs;
-        }
-
-        ///<summary>
-        /// Allows for the registration and deregistration of subscriptions
-        ///</summary>
-        public override ISubscriptionRegistry Subscriptions
-        {
-            get { return _fiber; }
         }
 
         /// <summary>

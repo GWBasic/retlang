@@ -13,7 +13,6 @@ namespace Retlang.Channels
     {
         private readonly object _batchLock = new object();
 
-        private readonly IFiber _fiber;
         private readonly Action<IList<T>> _receive;
         private readonly long _intervalInMs;
 
@@ -26,18 +25,10 @@ namespace Retlang.Channels
         /// <param name="receive"></param>
         /// <param name="intervalInMs"></param>
         public BatchSubscriber(IFiber fiber, Action<IList<T>> receive, long intervalInMs)
+            : base(fiber)
         {
-            _fiber = fiber;
             _receive = receive;
             _intervalInMs = intervalInMs;
-        }
-
-        ///<summary>
-        /// Allows for the registration and deregistration of subscriptions
-        ///</summary>
-        public override ISubscriptionRegistry Subscriptions
-        {
-            get { return _fiber; }
         }
 
         /// <summary>
