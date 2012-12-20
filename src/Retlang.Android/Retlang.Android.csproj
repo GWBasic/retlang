@@ -172,8 +172,8 @@
     <Compile Include="..\Retlang\Retlang.Channels\ISnapshotChannel.cs">
       <Link>Retlang.Channels\ISnapshotChannel.cs</Link>
     </Compile>
-    <Compile Include="..\Retlang\Retlang.Channels\ISubscribable.cs">
-      <Link>Retlang.Channels\ISubscribable.cs</Link>
+    <Compile Include="..\Retlang\Retlang.Channels\IReceiver.cs">
+      <Link>Retlang.Channels\IReceiver.cs</Link>
     </Compile>
     <Compile Include="..\Retlang\Retlang.Channels\ISubscriber.cs">
       <Link>Retlang.Channels\ISubscriber.cs</Link>

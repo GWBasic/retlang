@@ -7,12 +7,12 @@ namespace Retlang.Channels
     /// Base implementation for subscription
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public abstract class BaseSubscription<T> : ISubscribable<T>
+    public abstract class BaseSubscription<T> : IReceiver<T>
     {
         private Predicate<T> _filterOnProducerThread;
 
         /// <summary>
-        /// <see cref="ISubscribable{T}.FilterOnProducerThread"/>
+        /// <see cref="IReceiver{T}.FilterOnProducerThread"/>
         /// </summary>
         public Predicate<T> FilterOnProducerThread
         {

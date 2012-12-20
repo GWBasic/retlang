@@ -74,7 +74,6 @@
     <Compile Include="Retlang.Channels\IRequestPublisher.cs" />
     <Compile Include="Retlang.Channels\IRequestReplyChannel.cs" />
     <Compile Include="Retlang.Channels\ISnapshotChannel.cs" />
-    <Compile Include="Retlang.Channels\ISubscribable.cs" />
     <Compile Include="Retlang.Channels\ISubscriber.cs" />
     <Compile Include="Retlang.Channels\KeyedBatchSubscriber.cs" />
     <Compile Include="Retlang.Channels\LastSubscriber.cs" />
@@ -113,6 +112,7 @@
     <Compile Include="Retlang.Fibers\BaseFiber.cs" />
     <Compile Include="Retlang.Fibers\ContextFiber.cs" />
     <Compile Include="Retlang.Channels\IProducerThreadReceiver.cs" />
+    <Compile Include="Retlang.Channels\IReceiver.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Retlang.snk" />
