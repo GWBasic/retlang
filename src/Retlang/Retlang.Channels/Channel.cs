@@ -33,7 +33,7 @@ namespace Retlang.Channels
         /// <returns></returns>
         public IDisposable SubscribeToBatch(IFiber fiber, Action<IList<T>> receive, long intervalInMs)
         {
-            return SubscribeOnProducerThreads(new BatchSubscriber<T>(fiber, receive, intervalInMs));
+            return SubscribeOnProducerThreads(new BatchReceiver<T>(fiber, receive, intervalInMs));
         }
 
         /// <summary>

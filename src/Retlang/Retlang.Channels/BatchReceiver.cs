@@ -6,10 +6,10 @@ using Retlang.Fibers;
 namespace Retlang.Channels
 {
     /// <summary>
-    /// Batches actions for the consuming thread.
+    /// Receives one batch of actions per interval for the consuming thread.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class BatchSubscriber<T> : BaseReceiver<T>
+    public class BatchReceiver<T> : BaseReceiver<T>
     {
         private readonly object _batchLock = new object();
 
@@ -24,7 +24,7 @@ namespace Retlang.Channels
         /// <param name="fiber"></param>
         /// <param name="receive"></param>
         /// <param name="intervalInMs"></param>
-        public BatchSubscriber(IFiber fiber, Action<IList<T>> receive, long intervalInMs)
+        public BatchReceiver(IFiber fiber, Action<IList<T>> receive, long intervalInMs)
             : base(fiber)
         {
             _receive = receive;

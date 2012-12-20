@@ -1,3 +1,5 @@
+Hi, this site is all about Retlang, REAL RETLANG. This site is awesome. My name is Anthony and I can't stop thinking about Retlang. This library is cool; and by cool, I mean totally sweet.
+
 GitHub fork of Retlang: http://code.google.com/p/retlang/
 
 === Major Changes Since Retlang 1.0.x

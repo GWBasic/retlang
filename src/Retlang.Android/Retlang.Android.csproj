@@ -130,9 +130,6 @@
     <Compile Include="..\Retlang\Retlang.Core\TimerAction.cs">
       <Link>Retlang.Core\TimerAction.cs</Link>
     </Compile>
-    <Compile Include="..\Retlang\Retlang.Channels\BatchSubscriber.cs">
-      <Link>Retlang.Channels\BatchSubscriber.cs</Link>
-    </Compile>
     <Compile Include="..\Retlang\Retlang.Channels\Channel.cs">
       <Link>Retlang.Channels\Channel.cs</Link>
     </Compile>
@@ -205,6 +202,9 @@
     </Compile>
     <Compile Include="..\Retlang\Retlang.Channels\LastReceiver.cs">
       <Link>Retlang.Channels\LastReceiver.cs</Link>
+    </Compile>
+    <Compile Include="..\Retlang\Retlang.Channels\BatchReceiver.cs">
+      <Link>Retlang.Channels\BatchReceiver.cs</Link>
     </Compile>
   </ItemGroup>
 </Project>

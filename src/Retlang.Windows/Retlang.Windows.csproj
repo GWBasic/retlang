@@ -39,8 +39,8 @@
     <Compile Include="..\Retlang\Retlang.Channels\BaseReceiver.cs">
       <Link>Retlang.Channels\BaseReceiver.cs</Link>
     </Compile>
-    <Compile Include="..\Retlang\Retlang.Channels\BatchSubscriber.cs">
-      <Link>Retlang.Channels\BatchSubscriber.cs</Link>
+    <Compile Include="..\Retlang\Retlang.Channels\BatchReceiver.cs">
+      <Link>Retlang.Channels\BatchReceiver.cs</Link>
     </Compile>
     <Compile Include="..\Retlang\Retlang.Channels\Channel.cs">
       <Link>Retlang.Channels\Channel.cs</Link>
