@@ -160,9 +160,6 @@
     <Compile Include="..\Retlang\Retlang.Channels\ChannelRequest.cs">
       <Link>Retlang.Channels\ChannelRequest.cs</Link>
     </Compile>
-    <Compile Include="..\Retlang\Retlang.Channels\ChannelSubscription.cs">
-      <Link>Retlang.Channels\ChannelSubscription.cs</Link>
-    </Compile>
     <Compile Include="..\Retlang\Retlang.Channels\IChannel.cs">
       <Link>Retlang.Channels\IChannel.cs</Link>
     </Compile>
@@ -227,6 +224,9 @@
     <Compile Include="Retlang.Fibers\NSObjectContext.cs" />
     <Compile Include="..\Retlang\Retlang.Channels\BaseReceiver.cs">
       <Link>Retlang.Channels\BaseReceiver.cs</Link>
+    </Compile>
+    <Compile Include="..\Retlang\Retlang.Channels\Receiver.cs">
+      <Link>Retlang.Channels\Receiver.cs</Link>
     </Compile>
   </ItemGroup>
 </Project>

@@ -21,7 +21,7 @@ namespace Retlang.Channels
         /// <returns></returns>
         public IDisposable Subscribe(IFiber fiber, Action<T> receive)
         {
-            return SubscribeOnProducerThreads(new ChannelSubscription<T>(fiber, receive));
+            return SubscribeOnProducerThreads(new Receiver<T>(fiber, receive));
         }
 
         /// <summary>

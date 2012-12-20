@@ -41,7 +41,7 @@ namespace RetlangTests.Channels
                                             Assert.IsTrue(data%2 == 0);
                                             received++;
                                         };
-            ChannelSubscription<int> subber = new ChannelSubscription<int>(queue, onReceive);
+            Receiver<int> subber = new Receiver<int>(queue, onReceive);
             subber.FilterOnProducerThread = delegate(int msg) { return msg%2 == 0; };
             channel.SubscribeOnProducerThreads(subber);
             for (int i = 0; i <= 4; i++)

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using NUnit.Framework;
@@ -60,7 +60,7 @@ namespace RetlangTests.Examples
                         reset.Set();
                     }
                 };
-                var sub = new ChannelSubscription<int>(fiber, onMsg);
+                var sub = new Receiver<int>(fiber, onMsg);
                 sub.FilterOnProducerThread = x => x % 2 == 0;
                 channel.SubscribeOnProducerThreads(sub);
                 channel.Publish(1);

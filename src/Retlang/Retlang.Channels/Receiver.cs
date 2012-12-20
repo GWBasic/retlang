@@ -5,10 +5,10 @@ using Retlang.Fibers;
 namespace Retlang.Channels
 {
     /// <summary>
-    /// Subscription for actions on a channel.
+    /// Simple receiver that enqueues messages to a fiber.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class ChannelSubscription<T> : BaseReceiver<T>
+    public class Receiver<T> : BaseReceiver<T>
     {
         private readonly Action<T> _receiver;
         private readonly IFiber _fiber;
@@ -18,7 +18,7 @@ namespace Retlang.Channels
         /// </summary>
         /// <param name="fiber"></param>
         /// <param name="receiver"></param>
-        public ChannelSubscription(IFiber fiber, Action<T> receiver)
+        public Receiver(IFiber fiber, Action<T> receiver)
         {
             _fiber = fiber;
             _receiver = receiver;

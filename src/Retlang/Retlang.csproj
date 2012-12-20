@@ -63,7 +63,6 @@
     <Compile Include="Retlang.Channels\BatchSubscriber.cs" />
     <Compile Include="Retlang.Channels\Channel.cs" />
     <Compile Include="Retlang.Channels\ChannelRequest.cs" />
-    <Compile Include="Retlang.Channels\ChannelSubscription.cs" />
     <Compile Include="Retlang.Channels\IChannel.cs" />
     <Compile Include="Retlang.Channels\IPublisher.cs" />
     <Compile Include="Retlang.Channels\IQueueChannel.cs" />
@@ -113,6 +112,7 @@
     <Compile Include="Retlang.Channels\IProducerThreadReceiver.cs" />
     <Compile Include="Retlang.Channels\IReceiver.cs" />
     <Compile Include="Retlang.Channels\BaseReceiver.cs" />
+    <Compile Include="Retlang.Channels\Receiver.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Retlang.snk" />
