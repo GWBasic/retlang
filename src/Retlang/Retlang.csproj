@@ -66,7 +66,6 @@
     <Compile Include="Retlang.Channels\ChannelRequest.cs" />
     <Compile Include="Retlang.Channels\ChannelSubscription.cs" />
     <Compile Include="Retlang.Channels\IChannel.cs" />
-    <Compile Include="Retlang.Channels\IProducerThreadSubscriber.cs" />
     <Compile Include="Retlang.Channels\IPublisher.cs" />
     <Compile Include="Retlang.Channels\IQueueChannel.cs" />
     <Compile Include="Retlang.Channels\IReply.cs" />
@@ -113,6 +112,7 @@
     <Compile Include="Retlang.Fibers\ThreadFiber.cs" />
     <Compile Include="Retlang.Fibers\BaseFiber.cs" />
     <Compile Include="Retlang.Fibers\ContextFiber.cs" />
+    <Compile Include="Retlang.Channels\IProducerThreadReceiver.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Retlang.snk" />

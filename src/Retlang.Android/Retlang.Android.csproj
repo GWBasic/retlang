@@ -148,9 +148,6 @@
     <Compile Include="..\Retlang\Retlang.Channels\IChannel.cs">
       <Link>Retlang.Channels\IChannel.cs</Link>
     </Compile>
-    <Compile Include="..\Retlang\Retlang.Channels\IProducerThreadSubscriber.cs">
-      <Link>Retlang.Channels\IProducerThreadSubscriber.cs</Link>
-    </Compile>
     <Compile Include="..\Retlang\Retlang.Channels\IPublisher.cs">
       <Link>Retlang.Channels\IPublisher.cs</Link>
     </Compile>
@@ -206,5 +203,8 @@
       <Link>Retlang.Fibers\ContextFiber.cs</Link>
     </Compile>
     <Compile Include="Retlang.Fibers\HandlerContext.cs" />
+    <Compile Include="..\Retlang\Retlang.Channels\IProducerThreadReceiver.cs">
+      <Link>Retlang.Channels\IProducerThreadReceiver.cs</Link>
+    </Compile>
   </ItemGroup>
 </Project>

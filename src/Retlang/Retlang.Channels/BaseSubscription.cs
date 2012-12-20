@@ -26,7 +26,7 @@ namespace Retlang.Channels
         }
 
         /// <summary>
-        /// <see cref="IProducerThreadSubscriber{T}.ReceiveOnProducerThread"/>
+        /// <see cref="IProducerThreadReceiver{T}.ReceiveOnProducerThread"/>
         /// </summary>
         /// <param name="msg"></param>
         public void ReceiveOnProducerThread(T msg)

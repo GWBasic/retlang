@@ -6,7 +6,7 @@ namespace Retlang.Channels
     /// Action subscriber that receives actions on producer thread.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public interface IProducerThreadSubscriber<T>
+    public interface IProducerThreadReceiver<T>
     {
         /// <summary>
         /// Method called from producer threads
