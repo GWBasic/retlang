@@ -169,9 +169,6 @@
     <Compile Include="..\Retlang\Retlang.Channels\ISubscriber.cs">
       <Link>Retlang.Channels\ISubscriber.cs</Link>
     </Compile>
-    <Compile Include="..\Retlang\Retlang.Channels\KeyedBatchSubscriber.cs">
-      <Link>Retlang.Channels\KeyedBatchSubscriber.cs</Link>
-    </Compile>
     <Compile Include="..\Retlang\Retlang.Channels\QueueChannel.cs">
       <Link>Retlang.Channels\QueueChannel.cs</Link>
     </Compile>
@@ -205,6 +202,9 @@
     </Compile>
     <Compile Include="..\Retlang\Retlang.Channels\BatchReceiver.cs">
       <Link>Retlang.Channels\BatchReceiver.cs</Link>
+    </Compile>
+    <Compile Include="..\Retlang\Retlang.Channels\KeyedBatchReceiver.cs">
+      <Link>Retlang.Channels\KeyedBatchReceiver.cs</Link>
     </Compile>
   </ItemGroup>
 </Project>

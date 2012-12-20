@@ -6,11 +6,11 @@ using Retlang.Fibers;
 namespace Retlang.Channels
 {
     /// <summary>
-    /// Channel subscription that drops duplicates based upon a key.
+    /// Receiver that drops duplicates based upon a key.
     /// </summary>
     /// <typeparam name="K"></typeparam>
     /// <typeparam name="T"></typeparam>
-    public class KeyedBatchSubscriber<K, T> : BaseReceiver<T>
+    public class KeyedBatchReceiver<K, T> : BaseReceiver<T>
     {
         private readonly object _batchLock = new object();
 
@@ -27,7 +27,7 @@ namespace Retlang.Channels
         /// <param name="target"></param>
         /// <param name="fiber"></param>
         /// <param name="intervalInMs"></param>
-        public KeyedBatchSubscriber(Converter<T, K> keyResolver, Action<IDictionary<K, T>> target, IFiber fiber, long intervalInMs)
+        public KeyedBatchReceiver(Converter<T, K> keyResolver, Action<IDictionary<K, T>> target, IFiber fiber, long intervalInMs)
             : base(fiber)
         {
             _keyResolver = keyResolver;

@@ -72,7 +72,6 @@
     <Compile Include="Retlang.Channels\IRequestReplyChannel.cs" />
     <Compile Include="Retlang.Channels\ISnapshotChannel.cs" />
     <Compile Include="Retlang.Channels\ISubscriber.cs" />
-    <Compile Include="Retlang.Channels\KeyedBatchSubscriber.cs" />
     <Compile Include="Retlang.Channels\QueueChannel.cs" />
     <Compile Include="Retlang.Channels\QueueConsumer.cs" />
     <Compile Include="Retlang.Channels\RequestReplyChannel.cs" />
@@ -113,6 +112,7 @@
     <Compile Include="Retlang.Channels\Receiver.cs" />
     <Compile Include="Retlang.Channels\LastReceiver.cs" />
     <Compile Include="Retlang.Channels\BatchReceiver.cs" />
+    <Compile Include="Retlang.Channels\KeyedBatchReceiver.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Retlang.snk" />

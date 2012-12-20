@@ -47,7 +47,7 @@ namespace Retlang.Channels
         /// <returns></returns>
         public IDisposable SubscribeToKeyedBatch<K>(IFiber fiber, Converter<T, K> keyResolver, Action<IDictionary<K, T>> receive, long intervalInMs)
         {
-            return SubscribeOnProducerThreads(new KeyedBatchSubscriber<K, T>(keyResolver, receive, fiber, intervalInMs));
+            return SubscribeOnProducerThreads(new KeyedBatchReceiver<K, T>(keyResolver, receive, fiber, intervalInMs));
         }
 
         /// <summary>

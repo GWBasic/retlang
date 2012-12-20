@@ -87,8 +87,8 @@
     <Compile Include="..\Retlang\Retlang.Channels\ISubscriber.cs">
       <Link>Retlang.Channels\ISubscriber.cs</Link>
     </Compile>
-    <Compile Include="..\Retlang\Retlang.Channels\KeyedBatchSubscriber.cs">
-      <Link>Retlang.Channels\KeyedBatchSubscriber.cs</Link>
+    <Compile Include="..\Retlang\Retlang.Channels\KeyedBatchReceiver.cs">
+      <Link>Retlang.Channels\KeyedBatchReceiver.cs</Link>
     </Compile>
     <Compile Include="..\Retlang\Retlang.Channels\LastReceiver.cs">
       <Link>Retlang.Channels\LastReceiver.cs</Link>
