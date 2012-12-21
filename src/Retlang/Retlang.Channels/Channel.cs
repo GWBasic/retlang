@@ -18,11 +18,11 @@ namespace Retlang.Channels
         /// </summary>
         /// <param name="subscriber"></param>
         /// <returns></returns>
-        public IDisposable Subscribe(IProducerThreadReceiver<T> receiver)
+        public IDisposable Subscribe(IReceiver<T> receiver)
         {
-            _subscribers += receiver.ReceiveOnProducerThread;
+            _subscribers += receiver.Receive;
             
-            var unsubscriber = new Unsubscriber<T>(receiver.ReceiveOnProducerThread, this, receiver.Subscriptions);
+            var unsubscriber = new Unsubscriber<T>(receiver.Receive, this, receiver.Subscriptions);
             receiver.Subscriptions.RegisterSubscription(unsubscriber);
             
             return unsubscriber;

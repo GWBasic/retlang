@@ -45,7 +45,7 @@ namespace Retlang.Channels
         /// Receives message and batches as needed.
         /// </summary>
         /// <param name="msg"></param>
-        protected override void OnMessageOnProducerThread(T msg)
+        protected override void ReceiveFiltered(T msg)
         {
             lock (_batchLock)
             {

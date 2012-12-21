@@ -18,9 +18,9 @@ namespace Retlang.Channels
         }
 
         /// <summary>
-        /// <see cref="IReceiver{T}.FilterOnProducerThread"/>
+        /// <see cref="IReceiver{T}.Filter"/>
         /// </summary>
-        public Predicate<T> FilterOnProducerThread { get; set; }
+        public Predicate<T> Filter { get; set; }
 
         ///<summary>
         /// Allows for the registration and deregistration of subscriptions
@@ -31,19 +31,19 @@ namespace Retlang.Channels
         }
 
         /// <summary>
-        /// <see cref="IProducerThreadReceiver{T}.ReceiveOnProducerThread"/>
+        /// <see cref="IProducerThreadReceiver{T}.Receive"/>
         /// </summary>
         /// <param name="msg"></param>
-        public void ReceiveOnProducerThread(T msg)
+        public void Receive(T msg)
         {
-            var filter = FilterOnProducerThread; // copy reference for thread safety
+            var filter = Filter; // copy reference for thread safety
             if (filter != null && !filter(msg))
             {
                 return;
             }
             else
             {
-                OnMessageOnProducerThread(msg);
+                ReceiveFiltered(msg);
             }
         }
 
@@ -51,6 +51,6 @@ namespace Retlang.Channels
         /// Called after message has been filtered.
         /// </summary>
         /// <param name="msg"></param>
-        protected abstract void OnMessageOnProducerThread(T msg);
+        protected abstract void ReceiveFiltered(T msg);
     }
 }

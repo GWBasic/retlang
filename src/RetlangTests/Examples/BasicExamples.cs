@@ -61,7 +61,7 @@ namespace RetlangTests.Examples
                     }
                 };
                 var sub = new Receiver<int>(fiber, onMsg);
-                sub.FilterOnProducerThread = x => x % 2 == 0;
+                sub.Filter = x => x % 2 == 0;
                 channel.Subscribe(sub);
                 channel.Publish(1);
                 channel.Publish(2);

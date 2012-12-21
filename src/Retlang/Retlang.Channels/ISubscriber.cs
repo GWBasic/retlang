@@ -15,7 +15,7 @@ namespace Retlang.Channels
         /// </summary>
         /// <param name="subscriber"></param>
         /// <returns></returns>
-        IDisposable Subscribe(IProducerThreadReceiver<T> receiver);
+        IDisposable Subscribe(IReceiver<T> receiver);
 
         /// <summary>
         /// Removes all subscribers.

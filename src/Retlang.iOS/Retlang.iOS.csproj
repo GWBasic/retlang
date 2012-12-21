@@ -129,9 +129,6 @@
     <Compile Include="..\Retlang\Retlang.Channels\IChannel.cs">
       <Link>Retlang.Channels\IChannel.cs</Link>
     </Compile>
-    <Compile Include="..\Retlang\Retlang.Channels\IProducerThreadReceiver.cs">
-      <Link>Retlang.Channels\IProducerThreadReceiver.cs</Link>
-    </Compile>
     <Compile Include="..\Retlang\Retlang.Channels\IPublisher.cs">
       <Link>Retlang.Channels\IPublisher.cs</Link>
     </Compile>

@@ -37,7 +37,7 @@ namespace Retlang.Channels
         /// Receives the action and queues the execution on the target fiber.
         /// </summary>
         /// <param name="msg"></param>
-        protected override void OnMessageOnProducerThread(T msg)
+        protected override void ReceiveFiltered(T msg)
         {
             _fiber.Enqueue(() => _receive(msg));
         }

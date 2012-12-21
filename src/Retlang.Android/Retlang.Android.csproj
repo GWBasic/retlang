@@ -188,9 +188,6 @@
       <Link>Retlang.Fibers\ContextFiber.cs</Link>
     </Compile>
     <Compile Include="Retlang.Fibers\HandlerContext.cs" />
-    <Compile Include="..\Retlang\Retlang.Channels\IProducerThreadReceiver.cs">
-      <Link>Retlang.Channels\IProducerThreadReceiver.cs</Link>
-    </Compile>
     <Compile Include="..\Retlang\Retlang.Channels\BaseReceiver.cs">
       <Link>Retlang.Channels\BaseReceiver.cs</Link>
     </Compile>

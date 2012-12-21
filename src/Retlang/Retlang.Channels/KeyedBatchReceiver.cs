@@ -49,7 +49,7 @@ namespace Retlang.Channels
         /// received on delivery thread
         /// </summary>
         /// <param name="msg"></param>
-        protected override void OnMessageOnProducerThread(T msg)
+        protected override void ReceiveFiltered(T msg)
         {
             lock (_batchLock)
             {

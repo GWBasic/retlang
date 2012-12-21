@@ -106,7 +106,6 @@
     <Compile Include="Retlang.Fibers\ThreadFiber.cs" />
     <Compile Include="Retlang.Fibers\BaseFiber.cs" />
     <Compile Include="Retlang.Fibers\ContextFiber.cs" />
-    <Compile Include="Retlang.Channels\IProducerThreadReceiver.cs" />
     <Compile Include="Retlang.Channels\IReceiver.cs" />
     <Compile Include="Retlang.Channels\BaseReceiver.cs" />
     <Compile Include="Retlang.Channels\Receiver.cs" />
