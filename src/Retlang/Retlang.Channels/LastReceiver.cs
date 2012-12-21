@@ -4,6 +4,16 @@ using Retlang.Fibers;
 
 namespace Retlang.Channels
 {
+    public static class LastReceiverExtensions
+    {
+        public static IDisposable SubscribeToLast<T>(this ISubscriber<T> subscriber,
+            IFiber fiber, Action<T> receive, long intervalInMs)
+        {
+            var receiver = new LastReceiver<T>(fiber, receive, intervalInMs);
+            return subscriber.Subscribe(receiver);
+        }
+    }
+
     /// <summary>
     /// Receives the last action received on the channel over a time interval. 
     /// </summary>
@@ -12,7 +22,7 @@ namespace Retlang.Channels
     {
         private readonly object _batchLock = new object();
 
-        private readonly Action<T> _target;
+        private readonly Action<T> _receive;
         private readonly long _intervalInMs;
 
         private bool _flushPending;
@@ -24,10 +34,10 @@ namespace Retlang.Channels
         /// <param name="target"></param>
         /// <param name="fiber"></param>
         /// <param name="intervalInMs"></param>
-        public LastReceiver(Action<T> target, IFiber fiber, long intervalInMs)
+        public LastReceiver(IFiber fiber, Action<T> receive, long intervalInMs)
             : base(fiber)
         {
-            _target = target;
+            _receive = receive;
             _intervalInMs = intervalInMs;
         }
 
@@ -50,7 +60,7 @@ namespace Retlang.Channels
 
         private void Flush()
         {
-            _target(ClearPending());
+            _receive(ClearPending());
         }
 
         private T ClearPending()

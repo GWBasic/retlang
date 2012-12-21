@@ -9,11 +9,6 @@ namespace Retlang.Channels
     /// <typeparam name="T"></typeparam>
     public interface IChannel<T> : ISubscriber<T>, IPublisher<T>
     {
-        /// <summary>
-        /// Subscribes to actions on producer threads. Subscriber could be called from multiple threads.
-        /// </summary>
-        /// <param name="subscriber"></param>
-        /// <returns></returns>
-        IDisposable SubscribeOnProducerThreads(IProducerThreadReceiver<T> receiver);
+
     }
 }

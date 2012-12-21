@@ -14,79 +14,17 @@ namespace Retlang.Channels
         private event Action<T> _subscribers;
 
         /// <summary>
-        /// <see cref="ISubscriber{T}.Subscribe(IFiber,Action{T})"/>
-        /// </summary>
-        /// <param name="fiber"></param>
-        /// <param name="receive"></param>
-        /// <returns></returns>
-        public IDisposable Subscribe(IFiber fiber, Action<T> receive)
-        {
-            return SubscribeOnProducerThreads(new Receiver<T>(fiber, receive));
-        }
-
-        /// <summary>
-        /// <see cref="ISubscriber{T}.SubscribeToBatch(IFiber,Action{IList{T}},long)"/>
-        /// </summary>
-        /// <param name="fiber"></param>
-        /// <param name="receive"></param>
-        /// <param name="intervalInMs"></param>
-        /// <returns></returns>
-        public IDisposable SubscribeToBatch(IFiber fiber, Action<IList<T>> receive, long intervalInMs)
-        {
-            return SubscribeOnProducerThreads(new BatchReceiver<T>(fiber, receive, intervalInMs));
-        }
-
-        /// <summary>
-        /// <see cref="ISubscriber{T}.SubscribeToKeyedBatch{K}(IFiber,Converter{T,K},Action{IDictionary{K,T}},long)"/>
-        /// </summary>
-        /// <typeparam name="K"></typeparam>
-        /// <param name="fiber"></param>
-        /// <param name="keyResolver"></param>
-        /// <param name="receive"></param>
-        /// <param name="intervalInMs"></param>
-        /// <returns></returns>
-        public IDisposable SubscribeToKeyedBatch<K>(IFiber fiber, Converter<T, K> keyResolver, Action<IDictionary<K, T>> receive, long intervalInMs)
-        {
-            return SubscribeOnProducerThreads(new KeyedBatchReceiver<K, T>(keyResolver, receive, fiber, intervalInMs));
-        }
-
-        /// <summary>
-        /// Subscription that delivers the latest message to the consuming thread.  If a newer message arrives before the consuming thread
-        /// has a chance to process the message, the pending message is replaced by the newer message. The old message is discarded.
-        /// </summary>
-        /// <param name="fiber"></param>
-        /// <param name="receive"></param>
-        /// <param name="intervalInMs"></param>
-        /// <returns></returns>
-        public IDisposable SubscribeToLast(IFiber fiber, Action<T> receive, long intervalInMs)
-        {
-            return SubscribeOnProducerThreads(new LastReceiver<T>(receive, fiber, intervalInMs));
-        }
-
-        /// <summary>
         /// Subscribes to actions on producer threads. Subscriber could be called from multiple threads.
         /// </summary>
         /// <param name="subscriber"></param>
         /// <returns></returns>
-        public IDisposable SubscribeOnProducerThreads(IProducerThreadReceiver<T> receiver)
+        public IDisposable Subscribe(IProducerThreadReceiver<T> receiver)
         {
-            return SubscribeOnProducerThreads(receiver.ReceiveOnProducerThread, receiver.Subscriptions);
-        }
-
-        /// <summary>
-        /// Subscribes an action to be executed for every action posted to the channel. Action should be thread safe. 
-        /// Action may be invoked on multiple threads.
-        /// </summary>
-        /// <param name="subscriber"></param>
-        /// <param name="subscriptions"></param>
-        /// <returns></returns>
-        private IDisposable SubscribeOnProducerThreads(Action<T> subscriber, ISubscriptionRegistry subscriptions)
-        {
-            _subscribers += subscriber;
-
-            var unsubscriber = new Unsubscriber<T>(subscriber, this, subscriptions);
-            subscriptions.RegisterSubscription(unsubscriber);
-
+            _subscribers += receiver.ReceiveOnProducerThread;
+            
+            var unsubscriber = new Unsubscriber<T>(receiver.ReceiveOnProducerThread, this, receiver.Subscriptions);
+            receiver.Subscriptions.RegisterSubscription(unsubscriber);
+            
             return unsubscriber;
         }
 

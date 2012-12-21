@@ -5,6 +5,16 @@ using Retlang.Fibers;
 
 namespace Retlang.Channels
 {
+    public static class BatchReceiverExtensions
+    {
+        public static IDisposable SubscribeToBatch<T>(this ISubscriber<T> subscriber,
+            IFiber fiber, Action<IList<T>> receive, long intervalInMs)
+        {
+            var receiver = new BatchReceiver<T>(fiber, receive, intervalInMs);
+            return subscriber.Subscribe(receiver);
+        }
+    }
+
     /// <summary>
     /// Receives one batch of actions per interval for the consuming thread.
     /// </summary>

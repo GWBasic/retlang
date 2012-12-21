@@ -62,7 +62,7 @@ namespace RetlangTests.Examples
                 };
                 var sub = new Receiver<int>(fiber, onMsg);
                 sub.FilterOnProducerThread = x => x % 2 == 0;
-                channel.SubscribeOnProducerThreads(sub);
+                channel.Subscribe(sub);
                 channel.Publish(1);
                 channel.Publish(2);
                 channel.Publish(3);
@@ -118,7 +118,7 @@ namespace RetlangTests.Examples
                 };
 
                 Converter<int, String> keyResolver = x => x.ToString();
-                counter.SubscribeToKeyedBatch(fiber, keyResolver, cb, 0);
+                counter.SubscribeToKeyedBatch<int, String>(fiber, cb, keyResolver, 0);
 
                 for (var i = 0; i < 10; i++)
                 {

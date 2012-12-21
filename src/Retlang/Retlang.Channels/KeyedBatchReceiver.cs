@@ -5,17 +5,27 @@ using Retlang.Fibers;
 
 namespace Retlang.Channels
 {
+    public static class KeyedBatchReceiverExtensions
+    {
+        public static IDisposable SubscribeToKeyedBatch<T, K>(this ISubscriber<T> subscriber,
+            IFiber fiber, Action<IDictionary<K, T>> receive, Converter<T, K> converter, long intervalInMs)
+        {
+            var receiver = new KeyedBatchReceiver<T, K>(fiber, receive, converter, intervalInMs);
+            return subscriber.Subscribe(receiver);
+        }
+    }
+
     /// <summary>
     /// Receiver that drops duplicates based upon a key.
     /// </summary>
     /// <typeparam name="K"></typeparam>
     /// <typeparam name="T"></typeparam>
-    public class KeyedBatchReceiver<K, T> : BaseReceiver<T>
+    public class KeyedBatchReceiver<T, K> : BaseReceiver<T>
     {
         private readonly object _batchLock = new object();
 
-        private readonly Action<IDictionary<K, T>> _target;
-        private readonly Converter<T, K> _keyResolver;
+        private readonly Action<IDictionary<K, T>> _receive;
+        private readonly Converter<T, K> _converter;
         private readonly long _intervalInMs;
 
         private Dictionary<K, T> _pending;
@@ -27,11 +37,11 @@ namespace Retlang.Channels
         /// <param name="target"></param>
         /// <param name="fiber"></param>
         /// <param name="intervalInMs"></param>
-        public KeyedBatchReceiver(Converter<T, K> keyResolver, Action<IDictionary<K, T>> target, IFiber fiber, long intervalInMs)
+        public KeyedBatchReceiver(IFiber fiber, Action<IDictionary<K, T>> receive, Converter<T, K> converter, long intervalInMs)
             : base(fiber)
         {
-            _keyResolver = keyResolver;
-            _target = target;
+            _receive = receive;
+            _converter = converter;
             _intervalInMs = intervalInMs;
         }
 
@@ -43,7 +53,7 @@ namespace Retlang.Channels
         {
             lock (_batchLock)
             {
-                var key = _keyResolver(msg);
+                var key = _converter(msg);
                 if (_pending == null)
                 {
                     _pending = new Dictionary<K, T>();
@@ -58,7 +68,7 @@ namespace Retlang.Channels
             var toReturn = ClearPending();
             if (toReturn != null)
             {
-                _target(toReturn);
+                _receive(toReturn);
             }
         }
 
@@ -71,7 +81,7 @@ namespace Retlang.Channels
                     _pending = null;
                     return null;
                 }
-                IDictionary<K, T> toReturn = _pending;
+                var toReturn = _pending;
                 _pending = null;
                 return toReturn;
             }
