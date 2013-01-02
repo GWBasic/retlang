@@ -39,9 +39,16 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <Folder Include="Retlang.Channels.Test\" />
+    <Folder Include="Retlang.Test.Channels\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Retlang.Channels.Test\ChannelFixture.cs" />
+    <Compile Include="MoqTestFixture.cs" />
+    <Compile Include="Retlang.Test.Channels\ChannelFixture.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Retlang\Retlang.csproj">
+      <Project>{65ABCF4F-88F0-46EF-A6CF-71850019262E}</Project>
+      <Name>Retlang</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>
