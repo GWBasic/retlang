@@ -41,10 +41,10 @@ namespace Retlang.Fibers
         /// </summary>
         public override void Start()
         {
-            base.Start();
-
             lock (_lock)
             {
+                base.Start();
+
                 var actions = _queue.ToList();
                 _queue.Clear();
                 if (actions.Count > 0)

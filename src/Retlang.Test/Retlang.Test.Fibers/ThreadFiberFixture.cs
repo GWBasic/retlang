@@ -17,6 +17,12 @@ namespace Retlang.Test.Fibers
         }
 
         [Test]
+        public void Start_CalledTwice_Exception()
+        {
+            Assert.Throws<ThreadStateException>(_fiber.Start);
+        }
+
+        [Test]
         public void Assert_SameThread_NoException()
         {
             var handle = new AutoResetEvent(false);

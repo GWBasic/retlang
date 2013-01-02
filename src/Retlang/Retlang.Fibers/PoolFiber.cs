@@ -60,9 +60,12 @@ namespace Retlang.Fibers
         /// </summary>
         public override void Start()
         {
-            base.Start();
-            //flush any pending events in queue
-            Enqueue(() => { });
+            lock (_lock)
+            {
+                base.Start();
+                //flush any pending events in queue
+                Enqueue(() => { });
+            }
         }
 
         /// <summary>

@@ -13,6 +13,13 @@ namespace Retlang.Test.Fibers
         protected override void SetUp()
         {
             _fiber = new StubFiber();
+            _fiber.Start();
+        }
+
+        [Test]
+        public void Start_Always_NoException()
+        {
+            Assert.DoesNotThrow(_fiber.Start);
         }
 
         [Test]
