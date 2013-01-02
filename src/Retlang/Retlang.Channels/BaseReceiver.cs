@@ -4,10 +4,6 @@ using Retlang.Fibers;
 
 namespace Retlang.Channels
 {
-    /// <summary>
-    /// Base implementation for subscription
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
     public abstract class BaseReceiver<T> : IReceiver<T>
     {
         protected readonly IFiber _fiber;
