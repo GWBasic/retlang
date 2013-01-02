@@ -77,6 +77,23 @@ namespace Retlang.Fibers
             return Interlocked.Increment(ref THREAD_COUNT);
         }
 
+        public override void Assert()
+        {
+            if (Thread.CurrentThread.ManagedThreadId != _thread.ManagedThreadId)
+            {
+                throw new ThreadStateException();
+            }
+        }
+
+        /// <summary>
+        /// <see cref="IFiber.Start"/>
+        /// </summary>
+        public override void Start()
+        {
+            base.Start();
+            _thread.Start();
+        }
+
         /// <summary>
         /// Enqueue a single action.
         /// </summary>
@@ -89,15 +106,6 @@ namespace Retlang.Fibers
             }
 
             _queue.Enqueue(action);
-        }
-        
-        /// <summary>
-        /// <see cref="IFiber.Start"/>
-        /// </summary>
-        public override void Start()
-        {
-            base.Start();
-            _thread.Start();
         }
 
         ///<summary>

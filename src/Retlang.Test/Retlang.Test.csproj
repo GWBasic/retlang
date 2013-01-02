@@ -40,10 +40,14 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Retlang.Test.Channels\" />
+    <Folder Include="Retlang.Test.Fibers\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MoqTestFixture.cs" />
     <Compile Include="Retlang.Test.Channels\ChannelFixture.cs" />
+    <Compile Include="Retlang.Test.Fibers\ThreadFiberFixture.cs" />
+    <Compile Include="Retlang.Test.Fibers\PoolFiberFixture.cs" />
+    <Compile Include="Retlang.Test.Fibers\StubFiberFixture.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Retlang\Retlang.csproj">

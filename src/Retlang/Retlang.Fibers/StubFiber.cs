@@ -20,11 +20,15 @@ namespace Retlang.Fibers
 
         private bool _root = true;
 
-        /// <summary>
-        /// No Op
-        /// </summary>
+        public void Assert()
+        {
+
+        }
+
         public void Start()
-        {}
+        {
+
+        }
 
         /// <summary>
         /// Clears all subscriptions, scheduled, and pending actions.

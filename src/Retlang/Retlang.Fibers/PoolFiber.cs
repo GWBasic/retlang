@@ -18,6 +18,7 @@ namespace Retlang.Fibers
         private List<Action> _toPass = new List<Action>();
 
         private bool _flushPending;
+        private int? _threadId;
 
         /// <summary>
         /// Construct new instance.
@@ -44,6 +45,14 @@ namespace Retlang.Fibers
         public PoolFiber() 
             : this(new DefaultThreadPool(), new DefaultExecutor())
         {
+        }
+
+        public override void Assert()
+        {
+            if (Thread.CurrentThread.ManagedThreadId != _threadId)
+            {
+                throw new ThreadStateException();
+            }
         }
 
         /// <summary>
@@ -87,7 +96,16 @@ namespace Retlang.Fibers
             var toExecute = ClearActions();
             if (toExecute != null)
             {
-                _executor.Execute(toExecute);
+                try
+                {
+                    _threadId = Thread.CurrentThread.ManagedThreadId;
+                    _executor.Execute(toExecute);
+                }
+                finally
+                {
+                    _threadId = null;
+                }
+
                 lock (_lock)
                 {
                     if (_queue.Count > 0)

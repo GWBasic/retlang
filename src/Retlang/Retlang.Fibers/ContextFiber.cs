@@ -10,12 +10,14 @@ namespace Retlang.Fibers
     /// Allows interaction with an IExecutionContext. Useful for interacting with an outside
     /// threading model, such as that of a UI toolkit.
     ///</summary>
-    public class ContextFiber : BaseFiber
+    public abstract class ContextFiber : BaseFiber
     {
         private readonly object _lock = new object();
         private readonly IExecutionContext _executionContext;
         private readonly IExecutor _executor;
         private readonly List<Action> _queue = new List<Action>();
+
+        private int? _threadId = null;
 
         /// <summary>
         /// Creates an instance.
@@ -24,6 +26,14 @@ namespace Retlang.Fibers
         {
             _executionContext = executionContext;
             _executor = executor;
+        }
+
+        public override void Assert()
+        {
+            if (Thread.CurrentThread.ManagedThreadId != _threadId)
+            {
+                throw new ThreadStateException();
+            }
         }
 
         /// <summary>
@@ -50,21 +60,41 @@ namespace Retlang.Fibers
         /// <param name="action"></param>
         public override void Enqueue(Action action)
         {
+            if (_state == ExecutionState.Stopped)
+            {
+                return;
+            }
+
+            Action wrapped_action = () =>
+            {
+                try
+                {
+                    _threadId = Thread.CurrentThread.ManagedThreadId;
+                    action();
+                }
+                finally
+                {
+                    _threadId = null;
+                }
+            };
+
             switch (_state)
             {
-                case ExecutionState.Stopped:
-                    return;
                 case ExecutionState.Created:
                     lock (_lock)
                     {
                         if (_state == ExecutionState.Created)
                         {
-                            _queue.Add(action);
+                            _queue.Add(wrapped_action);
+                        }
+                        else
+                        {
+                            Enqueue(action);
                         }
                     }
                     break;
                 default:
-                    _executionContext.Enqueue(() => _executor.Execute(action));
+                    _executionContext.Enqueue(() => _executor.Execute(wrapped_action));
                     break;
             }
         }
