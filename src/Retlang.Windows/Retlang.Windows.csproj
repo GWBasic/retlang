@@ -48,6 +48,12 @@
     <Compile Include="..\Retlang\Retlang.Channels\ChannelRequest.cs">
       <Link>Retlang.Channels\ChannelRequest.cs</Link>
     </Compile>
+    <Compile Include="..\Retlang\Retlang.Channels\DebounceReceiver.cs">
+      <Link>Retlang.Channels\DebounceReceiver.cs</Link>
+    </Compile>
+    <Compile Include="..\Retlang\Retlang.Channels\IntervalReceiver.cs">
+      <Link>Retlang.Channels\IntervalReceiver.cs</Link>
+    </Compile>
     <Compile Include="..\Retlang\Retlang.Channels\Receiver.cs">
       <Link>Retlang.Channels\Receiver.cs</Link>
     </Compile>
