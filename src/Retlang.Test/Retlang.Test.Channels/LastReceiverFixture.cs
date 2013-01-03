@@ -1,32 +1,17 @@
 using System;
-using System.Threading;
-using System.Collections.Generic;
 using NUnit.Framework;
 using Retlang.Channels;
-using Retlang.Fibers;
 
 namespace Retlang.Test.Channels
 {
     [TestFixture]
-    public class LastReceiverFixture : MoqTestFixture
-    {
-        private IList<int> _received;
-        private AutoResetEvent _handle;
-        private IFiber _fiber;
-        private LastReceiver<int> _receiver;
-        
+    public class LastReceiverFixture : BaseReceiverFixture<int>
+    {   
         protected override void SetUp()
         {
-            _received = new List<int>();
-            _handle = new AutoResetEvent(false);
-            _fiber = new PoolFiber();
-            _fiber.Start();
+            base.SetUp();
             
-            _receiver = new LastReceiver<int>(_fiber, x =>
-            {
-                _received.Add(x);
-                _handle.Set();
-            }, 50);
+            _receiver = new LastReceiver<int>(_fiber, Receive, 50);
         }
         
         [Test]

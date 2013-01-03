@@ -1,32 +1,17 @@
 using System;
-using System.Threading;
-using System.Collections.Generic;
 using NUnit.Framework;
 using Retlang.Channels;
-using Retlang.Fibers;
 
 namespace Retlang.Test.Channels
 {
     [TestFixture]
-    public class DebounceReceiverFixture : MoqTestFixture
+    public class DebounceReceiverFixture : BaseReceiverFixture<int>
     {
-        private IList<int> _received;
-        private AutoResetEvent _handle;
-        private IFiber _fiber;
-        private DebounceReceiver<int> _receiver;
-
         protected override void SetUp()
         {
-            _received = new List<int>();
-            _handle = new AutoResetEvent(false);
-            _fiber = new PoolFiber();
-            _fiber.Start();
+            base.SetUp();
 
-            _receiver = new DebounceReceiver<int>(_fiber, x =>
-            {
-                _received.Add(x);
-                _handle.Set();
-            }, 50);
+            _receiver = new DebounceReceiver<int>(_fiber, Receive, 50);
         }
 
         [Test]
@@ -43,7 +28,7 @@ namespace Retlang.Test.Channels
         [Test]
         public void Receive_MultipleMessages_ReceivesLastMessage()
         {
-            for (var x = 0; x < 10; x++)
+            for (var x = 0; x < 5; x++)
             {
                 _receiver.Receive(x);
             }
@@ -51,7 +36,7 @@ namespace Retlang.Test.Channels
             var signaled = _handle.WaitOne(1000);
             Assert.IsTrue(signaled);
             Assert.AreEqual(1, _received.Count);
-            Assert.AreEqual(9, _received[0]);
+            Assert.AreEqual(4, _received[0]);
         }
     }
 }

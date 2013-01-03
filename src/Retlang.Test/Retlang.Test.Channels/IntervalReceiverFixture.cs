@@ -1,32 +1,17 @@
 using System;
-using System.Threading;
-using System.Collections.Generic;
 using NUnit.Framework;
 using Retlang.Channels;
-using Retlang.Fibers;
 
 namespace Retlang.Test.Channels
 {
     [TestFixture]
-    public class IntervalReceiverFixture : MoqTestFixture
+    public class IntervalReceiverFixture : BaseReceiverFixture<int>
     {
-        private IList<int> _received;
-        private AutoResetEvent _handle;
-        private IFiber _fiber;
-        private IntervalReceiver<int> _receiver;
-
         protected override void SetUp()
         {
-            _received = new List<int>();
-            _handle = new AutoResetEvent(false);
-            _fiber = new PoolFiber();
-            _fiber.Start();
+            base.SetUp();
             
-            _receiver = new IntervalReceiver<int>(_fiber, x =>
-            {
-                _received.Add(x);
-                _handle.Set();
-            }, 50);
+            _receiver = new IntervalReceiver<int>(_fiber, Receive, 50);
         }
 
         [Test]
@@ -43,7 +28,7 @@ namespace Retlang.Test.Channels
         [Test]
         public void Receive_MultipleMessages_ReceivesFirstAndLastMessage()
         {
-            for (var x = 0; x < 10; x++)
+            for (var x = 0; x < 5; x++)
             {
                 _receiver.Receive(x);
             }
@@ -55,7 +40,7 @@ namespace Retlang.Test.Channels
             }
             
             Assert.AreEqual(2, _received.Count);
-            Assert.AreEqual(new int[] { 0, 9 }, _received);
+            Assert.AreEqual(new int[] { 0, 4 }, _received);
         }
     }
 }
