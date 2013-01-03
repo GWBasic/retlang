@@ -50,6 +50,7 @@
     <Compile Include="Retlang.Test.Fibers\StubFiberFixture.cs" />
     <Compile Include="Retlang.Test.Channels\LastReceiverFixture.cs" />
     <Compile Include="Retlang.Test.Channels\DebounceReceiverFixture.cs" />
+    <Compile Include="Retlang.Test.Channels\IntervalReceiverFixture.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Retlang\Retlang.csproj">

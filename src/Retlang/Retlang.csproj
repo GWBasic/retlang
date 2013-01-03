@@ -113,6 +113,7 @@
     <Compile Include="Retlang.Channels\BatchReceiver.cs" />
     <Compile Include="Retlang.Channels\KeyedBatchReceiver.cs" />
     <Compile Include="Retlang.Channels\DebounceReceiver.cs" />
+    <Compile Include="Retlang.Channels\IntervalReceiver.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Retlang.snk" />
