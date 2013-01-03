@@ -40,10 +40,10 @@ namespace Retlang.Channels
         /// <returns></returns>
         public bool Publish(T message)
         {
-            var evnt = _subscribers; // copy reference for thread safety
-            if (evnt != null)
+            var subscribers = _subscribers; // copy reference for thread safety
+            if (subscribers != null)
             {
-                evnt(message);
+                subscribers(message);
                 return true;
             }
             return false;
@@ -56,8 +56,8 @@ namespace Retlang.Channels
         {
             get
             {
-                var evnt = _subscribers; // copy reference for thread safety
-                return evnt == null ? 0 : evnt.GetInvocationList().Length;
+                var subscribers = _subscribers; // copy reference for thread safety
+                return subscribers == null ? 0 : subscribers.GetInvocationList().Length;
             }
         }
 
