@@ -21,8 +21,6 @@ namespace Retlang.Channels
     /// <typeparam name="T"></typeparam>
     public class BatchReceiver<T> : BaseReceiver<T>
     {
-        private readonly object _batchLock = new object();
-
         private readonly Action<IList<T>> _receive;
         private readonly long _intervalInMs;
 
@@ -47,7 +45,7 @@ namespace Retlang.Channels
         /// <param name="msg"></param>
         protected override void ReceiveFiltered(T msg)
         {
-            lock (_batchLock)
+            lock (_lock)
             {
                 if (_pending == null)
                 {
@@ -61,7 +59,7 @@ namespace Retlang.Channels
         private void Flush()
         {
             IList<T> toFlush = null;
-            lock (_batchLock)
+            lock (_lock)
             {
                 if (_pending != null)
                 {

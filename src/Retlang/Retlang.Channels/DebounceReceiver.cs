@@ -20,8 +20,6 @@ namespace Retlang.Channels
     /// <typeparam name="T"></typeparam>
     public class DebounceReceiver<T> : BaseReceiver<T>
     {
-        private readonly object _lock = new object();
-
         private readonly Action<T> _receive;
         private readonly long _intervalInMs;
 

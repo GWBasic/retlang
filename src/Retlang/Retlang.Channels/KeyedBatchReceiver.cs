@@ -22,8 +22,6 @@ namespace Retlang.Channels
     /// <typeparam name="T"></typeparam>
     public class KeyedBatchReceiver<T, K> : BaseReceiver<T>
     {
-        private readonly object _batchLock = new object();
-
         private readonly Action<IDictionary<K, T>> _receive;
         private readonly Converter<T, K> _converter;
         private readonly long _intervalInMs;
@@ -51,7 +49,7 @@ namespace Retlang.Channels
         /// <param name="msg"></param>
         protected override void ReceiveFiltered(T msg)
         {
-            lock (_batchLock)
+            lock (_lock)
             {
                 var key = _converter(msg);
                 if (_pending == null)
@@ -74,7 +72,7 @@ namespace Retlang.Channels
 
         private IDictionary<K, T> ClearPending()
         {
-            lock (_batchLock)
+            lock (_lock)
             {
                 if (_pending == null || _pending.Count == 0)
                 {

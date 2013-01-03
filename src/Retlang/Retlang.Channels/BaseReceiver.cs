@@ -6,6 +6,7 @@ namespace Retlang.Channels
 {
     public abstract class BaseReceiver<T> : IReceiver<T>
     {
+        protected readonly object _lock = new object();
         protected readonly IFiber _fiber;
 
         protected BaseReceiver(IFiber fiber)
