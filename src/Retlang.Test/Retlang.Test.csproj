@@ -48,6 +48,7 @@
     <Compile Include="Retlang.Test.Fibers\ThreadFiberFixture.cs" />
     <Compile Include="Retlang.Test.Fibers\PoolFiberFixture.cs" />
     <Compile Include="Retlang.Test.Fibers\StubFiberFixture.cs" />
+    <Compile Include="Retlang.Test.Channels\LastReceiverFixture.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Retlang\Retlang.csproj">

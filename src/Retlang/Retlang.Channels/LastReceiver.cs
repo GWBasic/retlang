@@ -15,12 +15,12 @@ namespace Retlang.Channels
     }
 
     /// <summary>
-    /// Receives the last action received on the channel over a time interval. 
+    /// Receives the last action received on the channel over a time interval.
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public class LastReceiver<T> : BaseReceiver<T>
     {
-        private readonly object _batchLock = new object();
+        private readonly object _lock = new object();
 
         private readonly Action<T> _receive;
         private readonly long _intervalInMs;
@@ -47,29 +47,29 @@ namespace Retlang.Channels
         /// <param name="msg"></param>
         protected override void ReceiveFiltered(T msg)
         {
-            lock (_batchLock)
+            lock (_lock)
             {
+                _pending = msg;
+
                 if (!_flushPending)
                 {
                     _fiber.Schedule(Flush, _intervalInMs);
                     _flushPending = true;
                 }
-                _pending = msg;
             }
         }
 
         private void Flush()
         {
-            _receive(ClearPending());
-        }
-
-        private T ClearPending()
-        {
-            lock (_batchLock)
+            T message;
+            lock (_lock)
             {
+                message = _pending;
+                _pending = default(T);
                 _flushPending = false;
-                return _pending;
             }
+
+            _receive(message);
         }
     }
 }
