@@ -33,11 +33,11 @@ namespace Retlang.Channels
             _intervalInMs = intervalInMs;
         }
 
-        protected override void ReceiveFiltered(T msg)
+        protected override void ReceiveFiltered(T message)
         {
             lock (_lock)
             {
-                _pending = msg;
+                _pending = message;
 
                 if (_scheduled != null)
                 {

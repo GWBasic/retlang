@@ -35,17 +35,17 @@ namespace Retlang.Channels
             _intervalInMs = intervalInMs;
         }
 
-        protected override void ReceiveFiltered(T msg)
+        protected override void ReceiveFiltered(T message)
         {
             lock (_lock)
             {
                 if (_pending.Count < 2)
                 {
-                    _pending.Add(msg);
+                    _pending.Add(message);
                 }
                 else
                 {
-                    _pending[1] = msg;
+                    _pending[1] = message;
                 }
 
                 if (_scheduled == null)

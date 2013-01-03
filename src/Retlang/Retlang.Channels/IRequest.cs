@@ -15,8 +15,8 @@ namespace Retlang.Channels
         /// <summary>
         /// Send one or more responses.
         /// </summary>
-        /// <param name="replyMsg"></param>
+        /// <param name="replyMessage"></param>
         /// <returns></returns>
-        bool SendReply(M replyMsg);
+        bool SendReply(M replyMessage);
     }
 }

@@ -22,9 +22,9 @@ namespace Retlang.Core
         /// <summary>
         /// Construct with a custom message.
         /// </summary>
-        /// <param name="msg"></param>
-        public QueueFullException(string msg)
-            : base(msg)
+        /// <param name="message"></param>
+        public QueueFullException(string message)
+            : base(message)
         {
         }
 

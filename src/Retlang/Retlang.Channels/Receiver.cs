@@ -36,10 +36,10 @@ namespace Retlang.Channels
         /// <summary>
         /// Receives the action and queues the execution on the target fiber.
         /// </summary>
-        /// <param name="msg"></param>
-        protected override void ReceiveFiltered(T msg)
+        /// <param name="message"></param>
+        protected override void ReceiveFiltered(T message)
         {
-            _fiber.Enqueue(() => _receive(msg));
+            _fiber.Enqueue(() => _receive(message));
         }
     }
 }

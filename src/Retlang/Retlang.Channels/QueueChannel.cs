@@ -26,17 +26,17 @@ namespace Retlang.Channels
             return consumer;
         }
 
-        internal bool Pop(out T msg)
+        internal bool Pop(out T message)
         {
             lock (_queue)
             {
                 if (_queue.Count > 0)
                 {
-                    msg = _queue.Dequeue();
+                    message = _queue.Dequeue();
                     return true;
                 }
             }
-            msg = default(T);
+            message = default(T);
             return false;
         }
 

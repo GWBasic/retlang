@@ -33,11 +33,11 @@ namespace RetlangTests
             const int channelCount = 5;
             var msPerTick = 1000.0/Stopwatch.Frequency;
 
-            var channels = new Channel<Msg>[channelCount];
+            var channels = new Channel<Message>[channelCount];
 
             for (var i = 0; i < channels.Length; i++)
             {
-                channels[i] = new Channel<Msg>();
+                channels[i] = new Channel<Message>();
             }
 
             var fibers = new ThreadFiber[channelCount];
@@ -51,7 +51,7 @@ namespace RetlangTests
 
                 if (prior >= 0)
                 {
-                    Action<Msg> cb = delegate(Msg message)
+                    Action<Message> cb = delegate(Message message)
                                          {
                                              if (target != null)
                                              {
@@ -75,14 +75,14 @@ namespace RetlangTests
 
             for (var i = 0; i < 10000; i++)
             {
-                var s = new Msg(false);
+                var s = new Message(false);
                 channels[0].Publish(s);
                 s.Latch.WaitOne();
             }
 
             for (var i = 0; i < 5; i++)
             {
-                var s = new Msg(true);
+                var s = new Message(true);
                 channels[0].Publish(s);
                 Thread.Sleep(10);
             }
@@ -93,13 +93,13 @@ namespace RetlangTests
             }
         }
 
-        private class Msg
+        private class Message
         {
             public readonly bool Log;
             public readonly long Time = Stopwatch.GetTimestamp();
             public readonly ManualResetEvent Latch = new ManualResetEvent(false);
 
-            public Msg(bool log)
+            public Message(bool log)
             {
                 Log = log;
             }

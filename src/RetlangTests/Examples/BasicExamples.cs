@@ -52,7 +52,7 @@ namespace RetlangTests.Examples
                 var channel = new Channel<int>();
 
                 var reset = new AutoResetEvent(false);
-                Action<int> onMsg = x =>
+                Action<int> onMessage = x =>
                 {
                     Assert.IsTrue(x % 2 == 0);
                     if (x == 4)
@@ -60,7 +60,7 @@ namespace RetlangTests.Examples
                         reset.Set();
                     }
                 };
-                var sub = new Receiver<int>(fiber, onMsg);
+                var sub = new Receiver<int>(fiber, onMessage);
                 sub.Filter = x => x % 2 == 0;
                 channel.Subscribe(sub);
                 channel.Publish(1);

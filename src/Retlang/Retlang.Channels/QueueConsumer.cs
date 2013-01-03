@@ -34,10 +34,10 @@ namespace Retlang.Channels
         {
             try
             {
-                T msg;
-                if (_channel.Pop(out msg))
+                T message;
+                if (_channel.Pop(out message))
                 {
-                    _callback(msg);
+                    _callback(message);
                 }
             }
             finally

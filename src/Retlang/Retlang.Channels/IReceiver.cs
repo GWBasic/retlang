@@ -14,8 +14,8 @@ namespace Retlang.Channels
         /// <summary>
         /// Method called from producer threads
         /// </summary>
-        /// <param name="msg"></param>
-        void Receive(T msg);
+        /// <param name="message"></param>
+        void Receive(T message);
         
         ///<summary>
         /// Allows for the registration and deregistration of subscriptions

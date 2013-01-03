@@ -28,7 +28,7 @@ namespace RetlangTests
         }
     }
 
-    public struct MsgStruct
+    public struct MessageStruct
     {
         public int count;
     }
@@ -54,22 +54,22 @@ namespace RetlangTests
             using (var fiber = new ThreadFiber(executor))
             {
                 fiber.Start();
-                var channel = new Channel<MsgStruct>();
+                var channel = new Channel<MessageStruct>();
                 const int max = 5000000;
                 var reset = new AutoResetEvent(false);
-                Action<MsgStruct> onMsg = delegate(MsgStruct count)
+                Action<MessageStruct> onMessage = delegate(MessageStruct count)
                 {
                     if (count.count == max)
                     {
                         reset.Set();
                     }
                 };
-                channel.Subscribe(fiber, onMsg);
+                channel.Subscribe(fiber, onMessage);
                 using (new PerfTimer(max))
                 {
                     for (var i = 0; i <= max; i++)
                     {
-                        channel.Publish(new MsgStruct { count = i });
+                        channel.Publish(new MessageStruct { count = i });
                     }
                     Assert.IsTrue(reset.WaitOne(30000, false));
                 }
@@ -82,22 +82,22 @@ namespace RetlangTests
             using (var fiber = new ThreadFiber(executor))
             {
                 fiber.Start();
-                var channel = new Channel<MsgStruct>();
+                var channel = new Channel<MessageStruct>();
                 const int max = 5000000;
                 var reset = new AutoResetEvent(false);
-                Action<MsgStruct> onMsg = delegate(MsgStruct count)
+                Action<MessageStruct> onMessage = delegate(MessageStruct count)
                                               {
                                                   if (count.count == max)
                                                   {
                                                       reset.Set();
                                                   }
                                               };
-                channel.Subscribe(fiber, onMsg);
+                channel.Subscribe(fiber, onMessage);
                 using (new PerfTimer(max))
                 {
                     for (var i = 0; i <= max; i++)
                     {
-                        channel.Publish(new MsgStruct { count = i });
+                        channel.Publish(new MessageStruct { count = i });
                     }
                     Assert.IsTrue(reset.WaitOne(30000, false));
                 }
@@ -114,14 +114,14 @@ namespace RetlangTests
                 var channel = new Channel<int>();
                 const int max = 5000000;
                 var reset = new AutoResetEvent(false);
-                Action<int> onMsg = delegate(int count)
+                Action<int> onMessage = delegate(int count)
                                         {
                                             if (count == max)
                                             {
                                                 reset.Set();
                                             }
                                         };
-                channel.Subscribe(fiber, onMsg);
+                channel.Subscribe(fiber, onMessage);
                 using (new PerfTimer(max))
                 {
                     for (var i = 0; i <= max; i++)
@@ -144,20 +144,20 @@ namespace RetlangTests
                 const int max = 5000000;
                 var reset = new AutoResetEvent(false);
                 var end = new object();
-                Action<object> onMsg = delegate(object msg)
+                Action<object> onMessage = delegate(object message)
                                            {
-                                               if (msg == end)
+                                               if (message == end)
                                                {
                                                    reset.Set();
                                                }
                                            };
-                channel.Subscribe(fiber, onMsg);
+                channel.Subscribe(fiber, onMessage);
                 using (new PerfTimer(max))
                 {
-                    var msg = new object();
+                    var message = new object();
                     for (var i = 0; i <= max; i++)
                     {
-                        channel.Publish(msg);
+                        channel.Publish(message);
                     }
                     channel.Publish(end);
                     Assert.IsTrue(reset.WaitOne(30000, false));

@@ -64,7 +64,7 @@ namespace RetlangTests
         [Test]
         public void ShouldCompletelyClearPendingActionsBeforeExecutingNewActions()
         {
-            var msgs = new List<int>();
+            var messages = new List<int>();
 
             var sut = new StubFiber { ExecutePendingImmediately = true };
             var channel = new Channel<int>();
@@ -78,15 +78,15 @@ namespace RetlangTests
                                              }
 
                                              channel.Publish(x + 1);
-                                             msgs.Add(x);
+                                             messages.Add(x);
                                          });
 
             channel.Publish(0);
 
-            Assert.AreEqual(count, msgs.Count);
-            for (var i = 0; i < msgs.Count; i++)
+            Assert.AreEqual(count, messages.Count);
+            for (var i = 0; i < messages.Count; i++)
             {
-                Assert.AreEqual(i, msgs[i]);
+                Assert.AreEqual(i, messages[i]);
             }
         }
 

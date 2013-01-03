@@ -42,12 +42,12 @@ namespace Retlang.Channels
         /// <summary>
         /// Receives message from producer thread.
         /// </summary>
-        /// <param name="msg"></param>
-        protected override void ReceiveFiltered(T msg)
+        /// <param name="message"></param>
+        protected override void ReceiveFiltered(T message)
         {
             lock (_lock)
             {
-                _pending = msg;
+                _pending = message;
 
                 if (!_flushPending)
                 {

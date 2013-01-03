@@ -36,14 +36,14 @@ namespace Retlang.Channels
         /// <summary>
         /// <see cref="IPublisher{T}.Publish(T)"/>
         /// </summary>
-        /// <param name="msg"></param>
+        /// <param name="message"></param>
         /// <returns></returns>
-        public bool Publish(T msg)
+        public bool Publish(T message)
         {
             var evnt = _subscribers; // copy reference for thread safety
             if (evnt != null)
             {
-                evnt(msg);
+                evnt(message);
                 return true;
             }
             return false;

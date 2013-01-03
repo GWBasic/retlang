@@ -30,24 +30,24 @@ namespace Retlang.Channels
         /// <summary>
         /// <see cref="IProducerThreadReceiver{T}.Receive"/>
         /// </summary>
-        /// <param name="msg"></param>
-        public void Receive(T msg)
+        /// <param name="message"></param>
+        public void Receive(T message)
         {
             var filter = Filter; // copy reference for thread safety
-            if (filter != null && !filter(msg))
+            if (filter != null && !filter(message))
             {
                 return;
             }
             else
             {
-                ReceiveFiltered(msg);
+                ReceiveFiltered(message);
             }
         }
 
         /// <summary>
         /// Called after message has been filtered.
         /// </summary>
-        /// <param name="msg"></param>
-        protected abstract void ReceiveFiltered(T msg);
+        /// <param name="message"></param>
+        protected abstract void ReceiveFiltered(T message);
     }
 }

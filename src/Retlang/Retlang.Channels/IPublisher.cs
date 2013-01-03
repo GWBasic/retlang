@@ -9,8 +9,8 @@ namespace Retlang.Channels
         /// <summary>
         /// Publish a message to all subscribers. Returns true if any subscribers are registered.
         /// </summary>
-        /// <param name="msg"></param>
+        /// <param name="message"></param>
         /// <returns></returns>
-        bool Publish(T msg);
+        bool Publish(T message);
     }
 }

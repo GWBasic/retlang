@@ -42,8 +42,8 @@ namespace Retlang.Channels
         /// <summary>
         /// Receives message and batches as needed.
         /// </summary>
-        /// <param name="msg"></param>
-        protected override void ReceiveFiltered(T msg)
+        /// <param name="message"></param>
+        protected override void ReceiveFiltered(T message)
         {
             lock (_lock)
             {
@@ -52,7 +52,7 @@ namespace Retlang.Channels
                     _pending = new List<T>();
                     _fiber.Schedule(Flush, _intervalInMs);
                 }
-                _pending.Add(msg);
+                _pending.Add(message);
             }
         }
 

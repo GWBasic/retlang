@@ -46,18 +46,18 @@ namespace Retlang.Channels
         /// <summary>
         /// received on delivery thread
         /// </summary>
-        /// <param name="msg"></param>
-        protected override void ReceiveFiltered(T msg)
+        /// <param name="message"></param>
+        protected override void ReceiveFiltered(T message)
         {
             lock (_lock)
             {
-                var key = _converter(msg);
+                var key = _converter(message);
                 if (_pending == null)
                 {
                     _pending = new Dictionary<K, T>();
                     _fiber.Schedule(Flush, _intervalInMs);
                 }
-                _pending[key] = msg;
+                _pending[key] = message;
             }
         }
 

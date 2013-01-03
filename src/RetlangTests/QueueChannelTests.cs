@@ -21,7 +21,7 @@ namespace RetlangTests
             using (one)
             {
                 var channel = new QueueChannel<int>();
-                Action<int> onMsg = delegate
+                Action<int> onMessage = delegate
                 {
                     oneConsumed++;
                     if (oneConsumed == 20)
@@ -29,7 +29,7 @@ namespace RetlangTests
                         reset.Set();
                     }
                 };
-                channel.Subscribe(one, onMsg);
+                channel.Subscribe(one, onMessage);
                 for (var i = 0; i < 20; i++)
                 {
                     channel.Publish(i);
@@ -48,7 +48,7 @@ namespace RetlangTests
             using (one)
             {
                 var channel = new QueueChannel<int>();
-                Action<int> onMsg = delegate(int num)
+                Action<int> onMessage = delegate(int num)
                 {
                     if (num == 0)
                     {
@@ -56,7 +56,7 @@ namespace RetlangTests
                     }
                     reset.Set();
                 };
-                channel.Subscribe(one, onMsg);
+                channel.Subscribe(one, onMessage);
                 channel.Publish(0);
                 channel.Publish(1);
                 Assert.IsTrue(reset.WaitOne(10000, false));
