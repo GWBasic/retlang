@@ -9,5 +9,6 @@ GitHub fork of Retlang: http://code.google.com/p/retlang/
 - Renamed classes that support adapting Retlang to outside threading models to ContextFiber, rather than defining them as a GuiFiber.
 - Renamed inconsistent Subscriber, Subscribable interfaces and classes to Receiver.
 - Added IFiber.Assert()
-- Added alternate unit test assembly (Retlang.Test) that uses Moq.
-- Added DebounceReceiver.
+- Added alternate unit test assembly (Retlang.Test) that uses Moq and eschews long running tests.
+- Added DebounceReceiver. Renamed LastReceiver/SubscribeToLast to ThrottleReceiver/SubscribeToThrottle.
+- Added FirstReceiver, useful for receiving the first message on one receiver and subsequent messages on another receiver (SubscribeToFirstThenThrottle, SubscribeToFirstThenDebounce).

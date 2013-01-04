@@ -185,8 +185,8 @@
     <Compile Include="..\Retlang\Retlang.Channels\Receiver.cs">
       <Link>Retlang.Channels\Receiver.cs</Link>
     </Compile>
-    <Compile Include="..\Retlang\Retlang.Channels\LastReceiver.cs">
-      <Link>Retlang.Channels\LastReceiver.cs</Link>
+    <Compile Include="..\Retlang\Retlang.Channels\ThrottleReceiver.cs">
+      <Link>Retlang.Channels\ThrottleReceiver.cs</Link>
     </Compile>
     <Compile Include="..\Retlang\Retlang.Channels\BatchReceiver.cs">
       <Link>Retlang.Channels\BatchReceiver.cs</Link>

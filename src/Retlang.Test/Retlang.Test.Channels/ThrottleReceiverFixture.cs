@@ -5,13 +5,13 @@ using Retlang.Channels;
 namespace Retlang.Test.Channels
 {
     [TestFixture]
-    public class LastReceiverFixture : BaseReceiverFixture<int>
+    public class ThrottleReceiverFixture : BaseReceiverFixture<int>
     {   
         protected override void SetUp()
         {
             base.SetUp();
             
-            _receiver = new LastReceiver<int>(_fiber, Receive, 50);
+            _receiver = new ThrottleReceiver<int>(_fiber, Receive, 50);
         }
         
         [Test]
@@ -21,12 +21,13 @@ namespace Retlang.Test.Channels
 
             var signaled = _handle.WaitOne(1000);
             Assert.IsTrue(signaled);
+
             Assert.AreEqual(1, _received.Count);
             Assert.AreEqual(0, _received[0]);
         }
         
         [Test]
-        public void Receive_MultipleMessages_ReceivesLastMessagePerInterval()
+        public void Receive_MultipleMessages_ReceivesMessagesThrottledToOnePerInterval()
         {
             for (var x = 0; x < 10; x++)
             {

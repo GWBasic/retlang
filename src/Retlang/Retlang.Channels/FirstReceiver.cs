@@ -5,12 +5,11 @@ namespace Retlang.Channels
 {
     public static class FirstReceiverExtensions
     {
-        // XXX: SubscribeToFirstThenThrottle
-        public static IDisposable SubscribeToFirstThenLast<T>(this ISubscriber<T> subscriber,
+        public static IDisposable SubscribeToFirstThenThrottle<T>(this ISubscriber<T> subscriber,
             IFiber fiber, Action<T> receive, long intervalInMs)
         {
             var first = new Receiver<T>(fiber, receive);
-            var rest = new LastReceiver<T>(fiber, receive, intervalInMs);
+            var rest = new ThrottleReceiver<T>(fiber, receive, intervalInMs);
 
             var receiver = new FirstReceiver<T>(fiber, first, rest);
             return subscriber.Subscribe(receiver);

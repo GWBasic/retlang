@@ -90,8 +90,8 @@
     <Compile Include="..\Retlang\Retlang.Channels\KeyedBatchReceiver.cs">
       <Link>Retlang.Channels\KeyedBatchReceiver.cs</Link>
     </Compile>
-    <Compile Include="..\Retlang\Retlang.Channels\LastReceiver.cs">
-      <Link>Retlang.Channels\LastReceiver.cs</Link>
+    <Compile Include="..\Retlang\Retlang.Channels\ThrottleReceiver.cs">
+      <Link>Retlang.Channels\ThrottleReceiver.cs</Link>
     </Compile>
     <Compile Include="..\Retlang\Retlang.Channels\QueueChannel.cs">
       <Link>Retlang.Channels\QueueChannel.cs</Link>

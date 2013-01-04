@@ -48,12 +48,12 @@
     <Compile Include="Retlang.Test.Fibers\ThreadFiberFixture.cs" />
     <Compile Include="Retlang.Test.Fibers\PoolFiberFixture.cs" />
     <Compile Include="Retlang.Test.Fibers\StubFiberFixture.cs" />
-    <Compile Include="Retlang.Test.Channels\LastReceiverFixture.cs" />
     <Compile Include="Retlang.Test.Channels\DebounceReceiverFixture.cs" />
     <Compile Include="Retlang.Test.Channels\ReceiverFixture.cs" />
     <Compile Include="Retlang.Test.Channels\BaseReceiverFixture.cs" />
     <Compile Include="Retlang.Test.Channels\BatchReceiverFixture.cs" />
     <Compile Include="Retlang.Test.Channels\FirstReceiverFixture.cs" />
+    <Compile Include="Retlang.Test.Channels\ThrottleReceiverFixture.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Retlang\Retlang.csproj">

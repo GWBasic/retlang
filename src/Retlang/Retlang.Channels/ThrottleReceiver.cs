@@ -4,12 +4,12 @@ using Retlang.Fibers;
 
 namespace Retlang.Channels
 {
-    public static class LastReceiverExtensions
+    public static class ThrottleReceiverExtensions
     {
-        public static IDisposable SubscribeToLast<T>(this ISubscriber<T> subscriber,
+        public static IDisposable SubscribeToThrottle<T>(this ISubscriber<T> subscriber,
             IFiber fiber, Action<T> receive, long intervalInMs)
         {
-            var receiver = new LastReceiver<T>(fiber, receive, intervalInMs);
+            var receiver = new ThrottleReceiver<T>(fiber, receive, intervalInMs);
             return subscriber.Subscribe(receiver);
         }
     }
@@ -18,7 +18,7 @@ namespace Retlang.Channels
     /// Receives the last action received on the channel over a time interval.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class LastReceiver<T> : BaseReceiver<T>
+    public class ThrottleReceiver<T> : BaseReceiver<T>
     {
         private readonly Action<T> _receive;
         private readonly long _intervalInMs;
@@ -32,7 +32,7 @@ namespace Retlang.Channels
         /// <param name="target"></param>
         /// <param name="fiber"></param>
         /// <param name="intervalInMs"></param>
-        public LastReceiver(IFiber fiber, Action<T> receive, long intervalInMs)
+        public ThrottleReceiver(IFiber fiber, Action<T> receive, long intervalInMs)
             : base(fiber)
         {
             _receive = receive;

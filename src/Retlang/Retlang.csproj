@@ -109,11 +109,11 @@
     <Compile Include="Retlang.Channels\IReceiver.cs" />
     <Compile Include="Retlang.Channels\BaseReceiver.cs" />
     <Compile Include="Retlang.Channels\Receiver.cs" />
-    <Compile Include="Retlang.Channels\LastReceiver.cs" />
     <Compile Include="Retlang.Channels\BatchReceiver.cs" />
     <Compile Include="Retlang.Channels\KeyedBatchReceiver.cs" />
     <Compile Include="Retlang.Channels\DebounceReceiver.cs" />
     <Compile Include="Retlang.Channels\FirstReceiver.cs" />
+    <Compile Include="Retlang.Channels\ThrottleReceiver.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Retlang.snk" />
