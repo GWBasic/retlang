@@ -10,4 +10,4 @@ GitHub fork of Retlang: http://code.google.com/p/retlang/
 - Renamed inconsistent Subscriber, Subscribable interfaces and classes to Receiver.
 - Added IFiber.Assert()
 - Added alternate unit test assembly (Retlang.Test) that uses Moq.
-- Added IntervalReceiver, DebounceReceiver.
+- Added DebounceReceiver.
