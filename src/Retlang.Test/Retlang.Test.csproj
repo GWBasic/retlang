@@ -53,7 +53,7 @@
     <Compile Include="Retlang.Test.Channels\ReceiverFixture.cs" />
     <Compile Include="Retlang.Test.Channels\BaseReceiverFixture.cs" />
     <Compile Include="Retlang.Test.Channels\BatchReceiverFixture.cs" />
-    <Compile Include="Retlang.Test.Channels\ShiftReceiverFixture.cs" />
+    <Compile Include="Retlang.Test.Channels\FirstReceiverFixture.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Retlang\Retlang.csproj">

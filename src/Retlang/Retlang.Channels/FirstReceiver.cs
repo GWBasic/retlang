@@ -3,16 +3,16 @@ using Retlang.Fibers;
 
 namespace Retlang.Channels
 {
-    public class ShiftReceiver<T> : BaseReceiver<T>
+    public class FirstReceiver<T> : BaseReceiver<T>
     {
         private IReceiver<T> _first;
-        private readonly IReceiver<T> _receiver;
+        private readonly IReceiver<T> _rest;
 
-        public ShiftReceiver(IFiber fiber, IReceiver<T> first, IReceiver<T> receiver)
+        public FirstReceiver(IFiber fiber, IReceiver<T> first, IReceiver<T> rest)
             : base(fiber)
         {
             _first = first;
-            _receiver = receiver;
+            _rest = rest;
         }
 
         protected override void ReceiveFiltered(T message)
@@ -26,7 +26,7 @@ namespace Retlang.Channels
                 }
                 else
                 {
-                    _receiver.Receive(message);
+                    _rest.Receive(message);
                 }
             }
         }
