@@ -47,12 +47,12 @@ namespace Retlang.Channels
         {
             lock (_lock)
             {
-                if (_batch.Count == 0)
+                _batch.Add(message);
+
+                if (_batch.Count == 1)
                 {
                     _fiber.Schedule(Flush, _intervalInMs);
                 }
-
-                _batch.Add(message);
             }
         }
 
