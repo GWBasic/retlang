@@ -24,6 +24,7 @@ namespace Retlang.Channels
         private readonly Action<IList<T>> _receive;
         private readonly long _intervalInMs;
 
+        private IDisposable _scheduled;
         private IList<T> _batch = new List<T>();
 
         /// <summary>
@@ -49,9 +50,9 @@ namespace Retlang.Channels
             {
                 _batch.Add(message);
 
-                if (_batch.Count == 1)
+                if (_scheduled == null)
                 {
-                    _fiber.Schedule(Flush, _intervalInMs);
+                    _scheduled = _fiber.Schedule(Flush, _intervalInMs);
                 }
             }
         }
@@ -63,6 +64,9 @@ namespace Retlang.Channels
             {
                 batch = _batch;
                 _batch = new List<T>();
+
+                _scheduled.Dispose();
+                _scheduled = null;
             }
 
             _receive(batch);

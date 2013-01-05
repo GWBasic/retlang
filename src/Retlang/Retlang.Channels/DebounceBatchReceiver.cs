@@ -33,14 +33,14 @@ namespace Retlang.Channels
         protected override void ReceiveFiltered(T message)
         {
             lock (_lock)
-            { 
+            {
+                _batch.Add(message);
+
                 if (_scheduled != null)
                 {
                     _scheduled.Dispose();
                 }
                 _scheduled = _fiber.Schedule(Flush, _intervalInMs);
-
-                _batch.Add(message);
             }
         }
 

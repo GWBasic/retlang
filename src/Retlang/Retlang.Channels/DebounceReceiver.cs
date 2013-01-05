@@ -24,7 +24,7 @@ namespace Retlang.Channels
         private readonly long _intervalInMs;
 
         private IDisposable _scheduled;
-        private T _pending;
+        private T _message;
 
         public DebounceReceiver(IFiber fiber, Action<T> receive, long intervalInMs)
             : base(fiber)
@@ -37,7 +37,7 @@ namespace Retlang.Channels
         {
             lock (_lock)
             {
-                _pending = message;
+                _message = message;
 
                 if (_scheduled != null)
                 {
@@ -52,8 +52,8 @@ namespace Retlang.Channels
             T message;
             lock (_lock)
             {
-                message = _pending;
-                _pending = default(T);
+                message = _message;
+                _message = default(T);
 
                 _scheduled.Dispose();
                 _scheduled = null;

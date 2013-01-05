@@ -23,8 +23,8 @@ namespace Retlang.Channels
         private readonly Action<T> _receive;
         private readonly long _intervalInMs;
 
-        private bool _flushPending;
-        private T _pending;
+        private IDisposable _scheduled;
+        private T _message;
 
         /// <summary>
         /// New instance.
@@ -47,12 +47,11 @@ namespace Retlang.Channels
         {
             lock (_lock)
             {
-                _pending = message;
+                _message = message;
 
-                if (!_flushPending)
+                if (_scheduled == null)
                 {
-                    _fiber.Schedule(Flush, _intervalInMs);
-                    _flushPending = true;
+                    _scheduled = _fiber.Schedule(Flush, _intervalInMs);
                 }
             }
         }
@@ -62,9 +61,11 @@ namespace Retlang.Channels
             T message;
             lock (_lock)
             {
-                message = _pending;
-                _pending = default(T);
-                _flushPending = false;
+                message = _message;
+                _message = default(T);
+
+                _scheduled.Dispose();
+                _scheduled = null;
             }
 
             _receive(message);
