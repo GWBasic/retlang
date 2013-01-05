@@ -11,4 +11,5 @@ GitHub fork of Retlang: http://code.google.com/p/retlang/
 - Added IFiber.Assert()
 - Added alternate unit test assembly (Retlang.Test) that uses Moq and eschews long running tests.
 - Added DebounceReceiver. Renamed LastReceiver/SubscribeToLast to ThrottleReceiver/SubscribeToThrottle.
+ - Added DebounceBatchReceiver.
 - Added FirstReceiver, useful for receiving the first message on one receiver and subsequent messages on another receiver (SubscribeToFirstThenThrottle, SubscribeToFirstThenDebounce).
