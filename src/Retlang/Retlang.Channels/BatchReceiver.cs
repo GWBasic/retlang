@@ -24,7 +24,7 @@ namespace Retlang.Channels
         private readonly Action<IList<T>> _receive;
         private readonly long _intervalInMs;
 
-        private List<T> _pending;
+        private IList<T> _batch = new List<T>();
 
         /// <summary>
         /// Construct new instance.
@@ -47,30 +47,25 @@ namespace Retlang.Channels
         {
             lock (_lock)
             {
-                if (_pending == null)
+                if (_batch.Count == 0)
                 {
-                    _pending = new List<T>();
                     _fiber.Schedule(Flush, _intervalInMs);
                 }
-                _pending.Add(message);
+
+                _batch.Add(message);
             }
         }
 
         private void Flush()
         {
-            IList<T> toFlush = null;
+            IList<T> batch = null;
             lock (_lock)
             {
-                if (_pending != null)
-                {
-                    toFlush = _pending;
-                    _pending = null;
-                }
+                batch = _batch;
+                _batch = new List<T>();
             }
-            if (toFlush != null)
-            {
-                _receive(toFlush);
-            }
+
+            _receive(batch);
         }
     }
 }

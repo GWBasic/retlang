@@ -114,6 +114,7 @@
     <Compile Include="Retlang.Channels\DebounceReceiver.cs" />
     <Compile Include="Retlang.Channels\FirstReceiver.cs" />
     <Compile Include="Retlang.Channels\ThrottleReceiver.cs" />
+    <Compile Include="Retlang.Channels\DebounceBatchReceiver.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Retlang.snk" />
