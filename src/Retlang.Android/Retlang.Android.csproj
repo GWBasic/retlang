@@ -130,11 +130,30 @@
     <Compile Include="..\Retlang\Retlang.Core\TimerAction.cs">
       <Link>Retlang.Core\TimerAction.cs</Link>
     </Compile>
+    <Compile Include="..\Retlang\Retlang.Fibers\ContextFiber.cs">
+      <Link>Retlang.Fibers\ContextFiber.cs</Link>
+    </Compile>
+    <Compile Include="Retlang.Fibers\HandlerContext.cs" />
+    <Compile Include="..\Retlang\Retlang.Channels\BaseReceiver.cs">
+      <Link>Retlang.Channels\BaseReceiver.cs</Link>
+    </Compile>
+    <Compile Include="..\Retlang\Retlang.Channels\BatchReceiver.cs">
+      <Link>Retlang.Channels\BatchReceiver.cs</Link>
+    </Compile>
     <Compile Include="..\Retlang\Retlang.Channels\Channel.cs">
       <Link>Retlang.Channels\Channel.cs</Link>
     </Compile>
     <Compile Include="..\Retlang\Retlang.Channels\ChannelRequest.cs">
       <Link>Retlang.Channels\ChannelRequest.cs</Link>
+    </Compile>
+    <Compile Include="..\Retlang\Retlang.Channels\DebounceBatchReceiver.cs">
+      <Link>Retlang.Channels\DebounceBatchReceiver.cs</Link>
+    </Compile>
+    <Compile Include="..\Retlang\Retlang.Channels\DebounceReceiver.cs">
+      <Link>Retlang.Channels\DebounceReceiver.cs</Link>
+    </Compile>
+    <Compile Include="..\Retlang\Retlang.Channels\FirstReceiver.cs">
+      <Link>Retlang.Channels\FirstReceiver.cs</Link>
     </Compile>
     <Compile Include="..\Retlang\Retlang.Channels\IChannel.cs">
       <Link>Retlang.Channels\IChannel.cs</Link>
@@ -144,6 +163,9 @@
     </Compile>
     <Compile Include="..\Retlang\Retlang.Channels\IQueueChannel.cs">
       <Link>Retlang.Channels\IQueueChannel.cs</Link>
+    </Compile>
+    <Compile Include="..\Retlang\Retlang.Channels\IReceiver.cs">
+      <Link>Retlang.Channels\IReceiver.cs</Link>
     </Compile>
     <Compile Include="..\Retlang\Retlang.Channels\IReply.cs">
       <Link>Retlang.Channels\IReply.cs</Link>
@@ -163,11 +185,11 @@
     <Compile Include="..\Retlang\Retlang.Channels\ISnapshotChannel.cs">
       <Link>Retlang.Channels\ISnapshotChannel.cs</Link>
     </Compile>
-    <Compile Include="..\Retlang\Retlang.Channels\IReceiver.cs">
-      <Link>Retlang.Channels\IReceiver.cs</Link>
-    </Compile>
     <Compile Include="..\Retlang\Retlang.Channels\ISubscriber.cs">
       <Link>Retlang.Channels\ISubscriber.cs</Link>
+    </Compile>
+    <Compile Include="..\Retlang\Retlang.Channels\KeyedBatchReceiver.cs">
+      <Link>Retlang.Channels\KeyedBatchReceiver.cs</Link>
     </Compile>
     <Compile Include="..\Retlang\Retlang.Channels\QueueChannel.cs">
       <Link>Retlang.Channels\QueueChannel.cs</Link>
@@ -175,33 +197,20 @@
     <Compile Include="..\Retlang\Retlang.Channels\QueueConsumer.cs">
       <Link>Retlang.Channels\QueueConsumer.cs</Link>
     </Compile>
+    <Compile Include="..\Retlang\Retlang.Channels\Receiver.cs">
+      <Link>Retlang.Channels\Receiver.cs</Link>
+    </Compile>
     <Compile Include="..\Retlang\Retlang.Channels\RequestReplyChannel.cs">
       <Link>Retlang.Channels\RequestReplyChannel.cs</Link>
     </Compile>
     <Compile Include="..\Retlang\Retlang.Channels\SnapshotChannel.cs">
       <Link>Retlang.Channels\SnapshotChannel.cs</Link>
     </Compile>
-    <Compile Include="..\Retlang\Retlang.Channels\Unsubscriber.cs">
-      <Link>Retlang.Channels\Unsubscriber.cs</Link>
-    </Compile>
-    <Compile Include="..\Retlang\Retlang.Fibers\ContextFiber.cs">
-      <Link>Retlang.Fibers\ContextFiber.cs</Link>
-    </Compile>
-    <Compile Include="Retlang.Fibers\HandlerContext.cs" />
-    <Compile Include="..\Retlang\Retlang.Channels\BaseReceiver.cs">
-      <Link>Retlang.Channels\BaseReceiver.cs</Link>
-    </Compile>
-    <Compile Include="..\Retlang\Retlang.Channels\Receiver.cs">
-      <Link>Retlang.Channels\Receiver.cs</Link>
-    </Compile>
     <Compile Include="..\Retlang\Retlang.Channels\ThrottleReceiver.cs">
       <Link>Retlang.Channels\ThrottleReceiver.cs</Link>
     </Compile>
-    <Compile Include="..\Retlang\Retlang.Channels\BatchReceiver.cs">
-      <Link>Retlang.Channels\BatchReceiver.cs</Link>
-    </Compile>
-    <Compile Include="..\Retlang\Retlang.Channels\KeyedBatchReceiver.cs">
-      <Link>Retlang.Channels\KeyedBatchReceiver.cs</Link>
+    <Compile Include="..\Retlang\Retlang.Channels\Unsubscriber.cs">
+      <Link>Retlang.Channels\Unsubscriber.cs</Link>
     </Compile>
   </ItemGroup>
 </Project>
