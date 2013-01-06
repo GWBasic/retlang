@@ -70,14 +70,14 @@ namespace Retlang.Core
 
         private void AddPending(TimerAction pending)
         {
-            Action addAction = delegate
-                                     {
-                                         if (_running)
-                                         {
-                                             _pending.Add(pending);
-                                             pending.Schedule(this);
-                                         }
-                                     };
+            Action addAction = () =>
+            {
+                if (_running)
+                {
+                     _pending.Add(pending);
+                     pending.Schedule(this);
+                }
+            };
             _executionContext.Enqueue(addAction);
         }
 
