@@ -19,9 +19,6 @@ namespace Retlang.Fibers
 
         private int? _threadId = null;
 
-        /// <summary>
-        /// Creates an instance.
-        /// </summary>
         public ContextFiber(IExecutionContext executionContext, IExecutor executor)
         {
             _executionContext = executionContext;

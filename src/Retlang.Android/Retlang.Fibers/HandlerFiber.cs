@@ -10,6 +10,12 @@ namespace Retlang.Fibers
         {
 
         }
+
+        public HandlerFiber(Handler handler)
+            : this(handler, new DefaultExecutor())
+        {
+
+        }
     }
 }
 

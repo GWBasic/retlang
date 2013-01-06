@@ -6,8 +6,14 @@ namespace Retlang.Fibers
 {
     public class NSObjectFiber : ContextFiber
     {
-        public NSObjectFiber (IExecutor executor)
+        public NSObjectFiber(IExecutor executor)
             : base(new NSObjectContext(), executor)
+        {
+
+        }
+
+        public NSObjectFiber()
+            : this(new DefaultExecutor())
         {
 
         }
