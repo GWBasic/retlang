@@ -41,6 +41,7 @@
   <ItemGroup>
     <Folder Include="Retlang.Test.Channels\" />
     <Folder Include="Retlang.Test.Fibers\" />
+    <Folder Include="Retlang.Test.Core\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MoqTestFixture.cs" />
@@ -55,6 +56,7 @@
     <Compile Include="Retlang.Test.Channels\FirstReceiverFixture.cs" />
     <Compile Include="Retlang.Test.Channels\ThrottleReceiverFixture.cs" />
     <Compile Include="Retlang.Test.Channels\DebounceBatchReceiverFixture.cs" />
+    <Compile Include="Retlang.Test.Core\SchedulerFixture.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Retlang\Retlang.csproj">

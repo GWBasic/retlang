@@ -105,6 +105,16 @@ namespace Retlang.Fibers
             return toAdd;
         }
 
+        public IDisposable ScheduleDebounce(IDisposable scheduled, Action action, long firstInMs)
+        {
+            if (scheduled != null)
+            {
+                scheduled.Dispose();
+            }
+
+            return Schedule(action, firstInMs);
+        }
+
         /// <summary>
         /// Adds scheduled action to list.
         /// </summary>

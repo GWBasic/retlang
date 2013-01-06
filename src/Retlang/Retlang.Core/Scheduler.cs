@@ -40,6 +40,16 @@ namespace Retlang.Core
             }
         }
 
+        public IDisposable ScheduleDebounce(IDisposable scheduled, Action action, long firstInMs)
+        {
+            if (scheduled != null)
+            {
+                scheduled.Dispose();
+            }
+
+            return Schedule(action, firstInMs);
+        }
+
         ///<summary>
         /// Enqueues actions on to context after schedule elapses.  
         ///</summary>
