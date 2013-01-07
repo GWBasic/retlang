@@ -54,9 +54,9 @@ namespace Retlang.Fibers
             return _scheduler.Schedule(action, firstInMs);
         }
 
-        public IDisposable ScheduleDebounce(IDisposable scheduled, Action action, long firstInMs)
+        public IDisposable Reschedule(IDisposable scheduled, Action action, long firstInMs)
         {
-            return _scheduler.ScheduleDebounce(scheduled, action, firstInMs);
+            return _scheduler.Reschedule(scheduled, action, firstInMs);
         }
 
         public IDisposable ScheduleOnInterval(Action action, long firstInMs, long regularInMs)

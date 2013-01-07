@@ -18,18 +18,18 @@ namespace Retlang.Test.Core
         }
 
         [Test]
-        public void ScheduleDebounce_NullParameter_NoOp()
+        public void Reschedule_NullParameter_NoOp()
         {
-            _scheduler.ScheduleDebounce(null, () => { }, 1);
+            _scheduler.Reschedule(null, () => { }, 1);
         }
 
         [Test]
-        public void ScheduleDebounce_NonNullParameter_DisposesScheduled()
+        public void Reschedule_NonNullParameter_DisposesScheduled()
         {
             var mock_disposable = CreateMock<IDisposable>();
             mock_disposable.Setup(m => m.Dispose());
 
-            _scheduler.ScheduleDebounce(mock_disposable.Object, () => { }, 1);
+            _scheduler.Reschedule(mock_disposable.Object, () => { }, 1);
         }
     }
 }

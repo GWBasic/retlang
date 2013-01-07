@@ -40,7 +40,7 @@ namespace Retlang.Core
             }
         }
 
-        public IDisposable ScheduleDebounce(IDisposable scheduled, Action action, long firstInMs)
+        public IDisposable Reschedule(IDisposable scheduled, Action action, long firstInMs)
         {
             if (scheduled != null)
             {

@@ -15,7 +15,7 @@ namespace Retlang.Core
         /// <returns>a handle to cancel the timer.</returns>
         IDisposable Schedule(Action action, long firstInMs);
 
-        IDisposable ScheduleDebounce(IDisposable scheduled, Action action, long firstInMs);
+        IDisposable Reschedule(IDisposable scheduled, Action action, long firstInMs);
 
         /// <summary>
         /// Schedule an action to be executed on a recurring interval.
