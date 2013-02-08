@@ -57,6 +57,7 @@
     <Compile Include="Retlang.Test.Channels\ThrottleReceiverFixture.cs" />
     <Compile Include="Retlang.Test.Channels\DebounceBatchReceiverFixture.cs" />
     <Compile Include="Retlang.Test.Core\SchedulerFixture.cs" />
+    <Compile Include="Retlang.Test.Core\ExecutionContextExtensionsTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Retlang\Retlang.csproj">
