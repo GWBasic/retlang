@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using Retlang.Core;
 using Retlang.Fibers;
 
@@ -11,7 +12,10 @@ namespace Retlang.Channels
     ///<typeparam name="T"></typeparam>
     public class Channel<T> : IChannel<T>
     {
-        private event Action<T> _subscribers;
+        /// <summary>
+        /// Allows subscribing to the channel using multicast events
+        /// </summary>
+        public event Action<T> Published;
 
         /// <summary>
         /// Subscribes to actions on producer threads. Subscriber could be called from multiple threads.
@@ -20,7 +24,7 @@ namespace Retlang.Channels
         /// <returns></returns>
         public IDisposable Subscribe(IReceiver<T> receiver)
         {
-            _subscribers += receiver.Receive;
+            Published += receiver.Receive;
             
             var unsubscriber = new Unsubscriber<T>(receiver.Receive, this, receiver.Subscriptions);
             receiver.Subscriptions.RegisterSubscription(unsubscriber);
@@ -30,7 +34,7 @@ namespace Retlang.Channels
 
         internal void Unsubscribe(Action<T> toUnsubscribe)
         {
-            _subscribers -= toUnsubscribe;
+            Published -= toUnsubscribe;
         }
 
         /// <summary>
@@ -40,7 +44,7 @@ namespace Retlang.Channels
         /// <returns></returns>
         public bool Publish(T message)
         {
-            var subscribers = _subscribers; // copy reference for thread safety
+            var subscribers = Published; // copy reference for thread safety
             if (subscribers != null)
             {
                 subscribers(message);
@@ -56,7 +60,7 @@ namespace Retlang.Channels
         {
             get
             {
-                var subscribers = _subscribers; // copy reference for thread safety
+                var subscribers = Published; // copy reference for thread safety
                 return subscribers == null ? 0 : subscribers.GetInvocationList().Length;
             }
         }
@@ -66,7 +70,7 @@ namespace Retlang.Channels
         /// </summary>
         public void ClearSubscribers()
         {
-            _subscribers = null;
+            Published = null;
         }
     }
 }

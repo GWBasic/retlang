@@ -21,5 +21,10 @@ namespace Retlang.Channels
         /// Removes all subscribers.
         /// </summary>
         void ClearSubscribers();
+
+        /// <summary>
+        /// Allows subscribing to the channel using multicast events
+        /// </summary>
+        event Action<T> Published;
     }
 }

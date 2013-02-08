@@ -49,5 +49,15 @@ namespace Retlang.Channels
         /// </summary>
         /// <param name="message"></param>
         protected abstract void ReceiveFiltered(T message);
+
+        /// <summary>
+        /// Allow users to directly subscribe these objects to events
+        /// </summary>
+        /// <param name="subscriber"></param>
+        /// <returns></returns>
+        public static implicit operator Action<T>(BaseReceiver<T> baseReceiver)
+        {
+            return baseReceiver.Receive;
+        }
     }
 }

@@ -27,6 +27,21 @@ namespace Retlang.Test.Channels
             _received.Add(message);
             _handle.Set();
         }
+
+        [Test]
+        public void TestSubscribeThroughMulticastEvents()
+        {
+            var channel = new Channel<int>();
+            channel.Published += new Receiver<int>(
+                _fiber,
+                i => _handle.Set());
+
+            channel.Publish(44);
+
+            Assert.IsTrue(
+                _handle.WaitOne(TimeSpan.FromMilliseconds(500)),
+                "Callback never called");
+        }
     }
 }
 
