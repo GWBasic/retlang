@@ -3,6 +3,7 @@ using System.Threading;
 using System.Collections.Generic;
 using NUnit.Framework;
 using Retlang.Channels;
+using Retlang.Core;
 using Retlang.Fibers;
 
 namespace Retlang.Test.Channels
@@ -32,9 +33,10 @@ namespace Retlang.Test.Channels
         public void TestSubscribeThroughMulticastEvents()
         {
             var channel = new Channel<int>();
-            channel.Published += new Receiver<int>(
-                _fiber,
-                i => _handle.Set());
+            //channel.Published += new Action<int>(_ => _handle.Set()).SubscribeOn(_fiber);
+            //channel.Subscribe(_fiber, _ => _handle.Set());
+
+            channel.Published += new Receiver<int>(_fiber, _ => _handle.Set);
 
             channel.Publish(44);
 
