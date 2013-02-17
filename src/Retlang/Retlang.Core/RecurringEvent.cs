@@ -20,6 +20,15 @@ namespace Retlang.Core
             _regularInterval = regularInterval;
         }
 
+        public RecurringEvent(IExecutionContext executionContext, Action toExecute, 
+            TimeSpan scheduledTime, TimeSpan regularInterval, TimeSpan currentTime)
+        {
+            _expiration = Convert.ToInt64((currentTime + scheduledTime).TotalMilliseconds);
+            _executionContext = executionContext;
+            _toExecute = toExecute;
+            _regularInterval = Convert.ToInt64(regularInterval.TotalMilliseconds);
+        }
+
         public long Expiration
         {
             get { return _expiration; }

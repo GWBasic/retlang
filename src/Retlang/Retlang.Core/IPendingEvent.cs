@@ -18,4 +18,12 @@ namespace Retlang.Core
         /// <returns></returns>
         IPendingEvent Execute(long currentTime);
     }
+
+    public static class PendingEventExtensions
+    {
+        public static IPendingEvent Execute(this IPendingEvent pendingEvent, TimeSpan currentTime)
+        {
+            return pendingEvent.Execute(Convert.ToInt64(currentTime.TotalMilliseconds));
+        }
+    }
 }

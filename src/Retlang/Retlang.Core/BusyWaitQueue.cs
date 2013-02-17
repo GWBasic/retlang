@@ -34,13 +34,34 @@ namespace Retlang.Core
         }
 
         ///<summary>
+        /// BusyWaitQueue with custom executor.
+        ///</summary>
+        ///<param name="executor"></param>
+        ///<param name="spinsBeforeTimeCheck"></param>
+        ///<param name="msBeforeBlockingWait"></param>
+        public BusyWaitQueue(IExecutor executor, int spinsBeforeTimeCheck, TimeSpan timeBeforeBlockingWait)
+        {
+            _executor = executor;
+            _spinsBeforeTimeCheck = spinsBeforeTimeCheck;
+            _msBeforeBlockingWait = Convert.ToInt32(timeBeforeBlockingWait.TotalMilliseconds);
+        }
+
+        ///<summary>
         /// BusyWaitQueue with default executor.
         ///</summary>
         public BusyWaitQueue(int spinsBeforeTimeCheck, int msBeforeBlockingWait) 
             : this(new DefaultExecutor(), spinsBeforeTimeCheck, msBeforeBlockingWait)
         {
         }
-        
+
+        ///<summary>
+        /// BusyWaitQueue with default executor.
+        ///</summary>
+        public BusyWaitQueue(int spinsBeforeTimeCheck, TimeSpan timeBeforeBlockingWait) 
+            : this(new DefaultExecutor(), spinsBeforeTimeCheck, timeBeforeBlockingWait)
+        {
+        }
+
         /// <summary>
         /// Enqueue action.
         /// </summary>

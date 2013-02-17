@@ -19,6 +19,14 @@ namespace Retlang.Core
             _intervalInMs = intervalInMs;
         }
 
+        
+        public TimerAction(Action action, TimeSpan firstInterval, TimeSpan interval)
+        {
+            _action = action;
+            _firstIntervalInMs = Convert.ToInt64(firstInterval.TotalMilliseconds);
+            _intervalInMs = Convert.ToInt64(interval.TotalMilliseconds);
+        }
+
         public void Schedule(ISchedulerRegistry registry)
         {
             _timer = new Timer(x => ExecuteOnTimerThread(registry), null, _firstIntervalInMs, _intervalInMs);
