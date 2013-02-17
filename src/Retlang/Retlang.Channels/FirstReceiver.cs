@@ -15,6 +15,12 @@ namespace Retlang.Channels
             return subscriber.Subscribe(receiver);
         }
 
+        public static IDisposable SubscribeToFirstThenThrottle<T>(this ISubscriber<T> subscriber,
+            IFiber fiber, Action<T> receive, TimeSpan interval)
+        {
+            return subscriber.SubscribeToFirstThenThrottle(fiber, receive, Convert.ToInt64(interval.TotalMilliseconds));
+        }
+
         public static IDisposable SubscribeToFirstThenDebounce<T>(this ISubscriber<T> subscriber,
             IFiber fiber, Action<T> receive, long intervalInMs)
         {
@@ -23,6 +29,12 @@ namespace Retlang.Channels
 
             var receiver = new FirstReceiver<T>(fiber, first, rest);
             return subscriber.Subscribe(receiver);
+        }
+
+        public static IDisposable SubscribeToFirstThenDebounce<T>(this ISubscriber<T> subscriber,
+            IFiber fiber, Action<T> receive, TimeSpan interval)
+        {
+            return subscriber.SubscribeToFirstThenDebounce(fiber, receive, Convert.ToInt64(interval.TotalMilliseconds));
         }
     }
 

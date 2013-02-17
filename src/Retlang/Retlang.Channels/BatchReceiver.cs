@@ -13,6 +13,13 @@ namespace Retlang.Channels
             var receiver = new BatchReceiver<T>(fiber, receive, intervalInMs);
             return subscriber.Subscribe(receiver);
         }
+
+        public static IDisposable SubscribeToBatch<T>(this ISubscriber<T> subscriber,
+            IFiber fiber, Action<IList<T>> receive, TimeSpan interval)
+        {
+            var receiver = new BatchReceiver<T>(fiber, receive, interval);
+            return subscriber.Subscribe(receiver);
+        }
     }
 
     /// <summary>
@@ -38,6 +45,19 @@ namespace Retlang.Channels
         {
             _receive = receive;
             _intervalInMs = intervalInMs;
+        }
+
+        /// <summary>
+        /// Construct new instance.
+        /// </summary>
+        /// <param name="fiber"></param>
+        /// <param name="receive"></param>
+        /// <param name="intervalInMs"></param>
+        public BatchReceiver(IFiber fiber, Action<IList<T>> receive, TimeSpan interval)
+            : base(fiber)
+        {
+            _receive = receive;
+            _intervalInMs = Convert.ToInt64(interval.TotalMilliseconds);
         }
 
         /// <summary>

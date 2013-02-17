@@ -12,6 +12,13 @@ namespace Retlang.Channels
             var receiver = new DebounceReceiver<T>(fiber, receive, intervalInMs);
             return subscriber.Subscribe(receiver);
         }
+
+        public static IDisposable SubscribeToDebounce<T>(this ISubscriber<T> subscriber,
+            IFiber fiber, Action<T> receive, TimeSpan interval)
+        {
+            var receiver = new DebounceReceiver<T>(fiber, receive, interval);
+            return subscriber.Subscribe(receiver);
+        }
     }
     
     /// <summary>
@@ -31,6 +38,13 @@ namespace Retlang.Channels
         {
             _receive = receive;
             _intervalInMs = intervalInMs;
+        }
+
+        public DebounceReceiver(IFiber fiber, Action<T> receive, TimeSpan interval)
+            : base(fiber)
+        {
+            _receive = receive;
+            _intervalInMs = Convert.ToInt64(interval.TotalMilliseconds);
         }
 
         protected override void ReceiveFiltered(T message)

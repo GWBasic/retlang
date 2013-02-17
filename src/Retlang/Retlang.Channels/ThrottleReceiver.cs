@@ -12,6 +12,13 @@ namespace Retlang.Channels
             var receiver = new ThrottleReceiver<T>(fiber, receive, intervalInMs);
             return subscriber.Subscribe(receiver);
         }
+
+        public static IDisposable SubscribeToThrottle<T>(this ISubscriber<T> subscriber,
+            IFiber fiber, Action<T> receive, TimeSpan interval)
+        {
+            var receiver = new ThrottleReceiver<T>(fiber, receive, interval);
+            return subscriber.Subscribe(receiver);
+        }
     }
 
     /// <summary>
@@ -37,6 +44,19 @@ namespace Retlang.Channels
         {
             _receive = receive;
             _intervalInMs = intervalInMs;
+        }
+
+        /// <summary>
+        /// New instance.
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="fiber"></param>
+        /// <param name="intervalInMs"></param>
+        public ThrottleReceiver(IFiber fiber, Action<T> receive, TimeSpan interval)
+            : base(fiber)
+        {
+            _receive = receive;
+            _intervalInMs = Convert.ToInt64(interval.TotalMilliseconds);
         }
 
         /// <summary>

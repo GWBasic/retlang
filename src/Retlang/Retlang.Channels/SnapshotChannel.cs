@@ -23,6 +23,14 @@ namespace Retlang.Channels
         }
 
         ///<summary>
+        ///</summary>
+        ///<param name="timeoutInMs">For initial snapshot</param>
+        public SnapshotChannel(TimeSpan timeout)
+        {
+            _timeoutInMs = Convert.ToInt32(timeout.TotalMilliseconds);
+        }
+
+        ///<summary>
         /// Subscribes for an initial snapshot and then incremental update.
         ///</summary>
         ///<param name="fiber">the target executor to receive the message</param>

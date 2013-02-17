@@ -16,4 +16,12 @@ namespace Retlang.Channels
         /// <returns></returns>
         bool Receive(int timeoutInMs, out M result);
     }
+
+    public static class ReplyExtensions
+    {
+        public static bool Receive<M>(this IReply<M> reply, TimeSpan timeout, out M result)
+        {
+            return reply.Receive(Convert.ToInt32(timeout.TotalMilliseconds), out result);
+        }
+    }
 }

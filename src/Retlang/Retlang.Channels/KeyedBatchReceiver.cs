@@ -13,6 +13,13 @@ namespace Retlang.Channels
             var receiver = new KeyedBatchReceiver<T, K>(fiber, receive, converter, intervalInMs);
             return subscriber.Subscribe(receiver);
         }
+
+        public static IDisposable SubscribeToKeyedBatch<T, K>(this ISubscriber<T> subscriber,
+            IFiber fiber, Action<IDictionary<K, T>> receive, Converter<T, K> converter, TimeSpan interval)
+        {
+            var receiver = new KeyedBatchReceiver<T, K>(fiber, receive, converter, interval);
+            return subscriber.Subscribe(receiver);
+        }
     }
 
     /// <summary>
@@ -41,6 +48,21 @@ namespace Retlang.Channels
             _receive = receive;
             _converter = converter;
             _intervalInMs = intervalInMs;
+        }
+
+        /// <summary>
+        /// Construct new instance.
+        /// </summary>
+        /// <param name="keyResolver"></param>
+        /// <param name="target"></param>
+        /// <param name="fiber"></param>
+        /// <param name="intervalInMs"></param>
+        public KeyedBatchReceiver(IFiber fiber, Action<IDictionary<K, T>> receive, Converter<T, K> converter, TimeSpan interval)
+            : base(fiber)
+        {
+            _receive = receive;
+            _converter = converter;
+            _intervalInMs = Convert.ToInt64(interval.TotalMilliseconds);
         }
 
         /// <summary>
